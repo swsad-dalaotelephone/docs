@@ -1,4 +1,7 @@
 # Product Backlog
+| 版本 |   日期    | 描述 |  作者   |
+| :--: | :-------: | :--: | :-----: |
+| v1.0 | 2019-3-30 | backlog | Dafeng |
 
 ID |Name            |Imp |Est(man-day)|How to demo|Notes
 :-:|:--------------:|:--:|:--:|:-----------------:|:--:
