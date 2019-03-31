@@ -1,5 +1,10 @@
 # Inception Meeting Record
 
+{:.no_toc}
+
+* 目录
+{:toc}
+
 ## 会议目标
 对产品进行初步构想，就产品范围、愿景和核心业务达成一致
 
@@ -17,14 +22,23 @@ Young、Dafeng、CurryYuan、gitgiter、Sherry
    
 ## 讨论结果
 - 调查结果
+
 ![调查结果](../imgs/inception-meeting1.png)
+
 - 产品名称
+
 ![产品名称](../imgs/inception-meeting2.png)
+
 - 产品讨论
+  
 ![产品讨论](../imgs/inception-meeting3.png)
+
 - 相关技术
+  
 ![相关技术](../imgs/inception-meeting4.png)
+
 - 下周安排
+  
 ![下周安排](../imgs/inception-meeting5.png)
 
 ## 会议不足
