@@ -3,7 +3,7 @@
 | 版本 |   日期    | 描述 |  作者   |
 | :--: | :-------: | :--: | :-----: |
 | v1.0 | 2019-3-18 | 完成岗位分工 | Young |
-
+| v1.1 | 2019-5-4 | 更改岗位分工 | Young |
 {:.no_toc}
 
 * 目录
@@ -17,8 +17,8 @@
 
 |学号|昵称|Github|岗位角色|
 |:--:|:--:|:--:|:--:|
-|16340269|Young|[HzYoung](https://github.com/HzYoung)|项目经理、go工程师|
-|16340306|Jeff|[zys980808](https://github.com/zys980808)|产品经理、js工程师|
+|16340269|Young|[HzYoung](https://github.com/HzYoung)|项目经理、产品经理、go工程师|
+|16340306|Jeff|[zys980808](https://github.com/zys980808)|js工程师、go工程师|
 |16340311|Sherry|[Yuandi-Sherry](https://github.com/Yuandi-Sherry)|客户经理、UI/UX设计师、js工程师|
 |16340255|gitgiter|[gitgiter](https://github.com/gitgiter)|技术经理、go工程师|
 |16340260|Dafeng|[Dafenghh](https://github.com/Dafenghh)|js工程师、测试工程师|
@@ -29,8 +29,8 @@
 
 |昵称|分工内容|个人宣言|
 |:--:|:--:|:--:|
-|Young|项目开发进度的管理，数据库设计，后端开发|coding拜锦鲤|
-|Jeff|前期市场调研，需求分析等相关文档，小程序前端开发|精通摸鱼|
+|Young|项目开发进度的管理，需求分析相关文档，数据库设计，搭建后端go开发框架，后端开发|coding拜锦鲤|
+|Jeff|小程序前端开发|精通摸鱼|
 |Sherry|前期客户调研，UI设计，小程序前端开发|我是一个小天才|
 |gitgiter|架构设计，api接口设计，后端开发|朴素摸鱼|
 |Dafeng|小程序前端开发，协助web前端开发，测试用例|我是一个大菜鸡|
