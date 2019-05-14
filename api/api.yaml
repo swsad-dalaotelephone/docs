@@ -1,0 +1,189 @@
+openapi: 3.0.0
+info:
+  title: Bao Bao Zhuan
+  description: 'All apis for Bao Bao Zhuan.'
+  termsOfService: https://swsad-dalaotelephone.github.io/docs/%E5%90%8E%E7%AB%AF%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83.html###%E6%8E%A5%E5%8F%A3%E8%A7%84%E8%8C%83
+  contact:
+    email: 1176748429@qq.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+externalDocs:
+  description: Find out more about baobaozhuan
+  url: https://swsad-dalaotelephone.github.io/docs/
+servers:
+- url: https://api.baobaozhuan.cn/
+
+paths:
+  /weAppLogin:
+    get:
+      tags: 
+      - user
+      summary: Login weApp
+      parameters:
+      - name: code
+        in: query
+        required: true
+        description: The code for getting openid and session key.
+        schema:
+          type: string
+      responses:
+        200:
+          description: Status OK. If user exist, return msg and user info, else return msg and openId.
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                  user:
+                    $ref: '#/components/schemas/userJson'
+                  openId:
+                    type: string
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
+  /login:
+    post:
+      tags:
+      - user
+      summary: Login account
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                phone:
+                  type: string
+                  description: Phone number
+                password:
+                  type: string
+                  description: Password
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+        404:
+          $ref: '#/components/responses/404NotFound'
+      
+  /register:
+    post:
+      tags:
+      - user
+      summary: Register account
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                nickName:
+                  type: string
+                  description: Nick name
+                phone:
+                  type: string
+                  description: Phone number
+                password:
+                  type: string
+                  description: Password
+                openId:
+                  type: string
+                  description: openId for identifying wechat user
+      responses:
+        200:
+          description: OK
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                  user:
+                    $ref: '#/components/schemas/userJson'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+      
+  /logout:
+    get:
+      tags:
+      - user
+      summary: Logout account
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+          
+        
+components:
+  schemas:
+    userJson:
+      type: object
+      properties:
+        nickName:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+  responses:
+    200StatusOK:
+      description: Status OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              msg:
+                type: string
+    400BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              msg:
+                type: string
+                default: 'Bad Request'
+    404NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              msg:
+                type: string
+                default: 'Not Found'
+    500ServerErr:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              msg:
+                type: string
+                default: 'Internal Server Error'
+              
