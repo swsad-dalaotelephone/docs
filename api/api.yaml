@@ -241,7 +241,7 @@ paths:
       - task
       summary: Stop tasks
       parameters: 
-      - name: id
+      - name: taskId
         in: query
         required: true
         description: Id of the task which is to be stop
@@ -274,7 +274,7 @@ paths:
             schema:
               type: object
               properties:
-                id:
+                taskId:
                   type: string
                   description: Id of the task which is to be verify
                 publisher:
@@ -319,6 +319,87 @@ paths:
         500:
           $ref: '#/components/responses/500ServerErr'
       
+  /task/acceptTask:
+    get:
+      tags: 
+      - task
+      summary: Accept task
+      parameters: 
+      - name: taskId
+        in: query
+        required: true
+        description: Id of the task which is chosen
+        schema:
+          type: string
+      - name: phone
+        in: query
+        required: true
+        description: Phone of the user who try to accept the task
+        schema:
+          type: string
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
+  /task/getRecommendTasks:
+    get:
+      tags: 
+      - task
+      summary: Get the list of undo tasks, which will be recommended to the user
+      parameters: 
+      - name: phone
+        in: query
+        required: false
+        description: Phone of the user, can be empty?
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: List of tasks
+                items:
+                  $ref: '#/components/schemas/task'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+  
+  /task/getTaskDetail:
+    get:
+      tags: 
+      - task
+      summary: Get the detail information of the task
+      parameters: 
+      - name: taskId
+        in: query
+        description: Id of the task which is queried
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/task'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
   
 components:
   schemas:
@@ -394,7 +475,7 @@ components:
           description: Task name
         brief-info:
           type: string
-          description: Brief introfuction of the task
+          description: Brief information of the task
         type:
           type: string
           description: Task type, questionnaire, data collection, recruit
