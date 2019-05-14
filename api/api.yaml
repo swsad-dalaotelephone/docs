@@ -205,7 +205,61 @@ paths:
           $ref: '#/components/responses/404NotFound'
         500:
           $ref: '#/components/responses/500ServerErr'
-                
+  
+  /task/publishTask:
+    post:
+      tags:
+      - task
+      summary: Publish task
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Task name
+                brief-intro:
+                  type: string
+                  description: Must less then 20 characters
+                type:
+                  type: string
+                  description: Task type, questionnaire, data collection, recruit
+                contact:
+                  type: string
+                  description: Contact of the publisher
+                requirements:
+                  type: array
+                  description: The types of target people
+                  items:
+                    type: string
+                    description: Certain type
+                ddl:
+                  type: string
+                  description: The deadline for the task
+                count:
+                  type: number
+                  description: Total count of tasks
+                reward:
+                  type: number
+                  description: Reward for finshing the task (one person)
+                content:
+                  type: object
+                  description: All content for task, in json format (see schema of questionnaire, dataCollection and recruitment for detail)
+                  oneOf:
+                    - $ref: '#/components/schemas/questionnaire'
+                    - $ref: '#/components/schemas/dataCollection'
+                    - $ref: '#/components/schemas/recruitment'
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
       
 components:
   schemas:
@@ -218,6 +272,58 @@ components:
           type: string
         email:
           type: string
+    questionnaire:
+      type: object
+      description: All content of the questionnaire, in json format
+      properties:
+        questDes:
+          type: string
+          description: Descripition for the questionnaire
+        questions:
+          type: array
+          description: All questions
+          items:
+            $ref: '#/components/schemas/question'
+    question:
+      type: object
+      description: Each question
+      properties:
+        questType:
+          type: string
+          description: Type of the question
+        questOption:
+          type: array
+          description: Options of a question
+          items:
+            type: string
+            description: Option
+    dataCollection:
+      type: object
+      description: All content of data collection, in json format
+      properties:
+        dataDes:
+          type: string
+          description: Description for the data required
+        submitWay:
+          type: string
+          description: Email only, may change in future.
+    recruitment:
+      type: object
+      description: All content of recruitment
+      properties:
+        recruitDes:
+          type: string
+          description: Description for the recruitment 
+        time:
+          type: string
+          description: Time for the task
+        location:
+          type: string
+          description: Location for the task
+        others:
+          type: string
+          description: Other information or requirement
+        
   responses:
     200StatusOK:
       description: Status OK
