@@ -239,7 +239,7 @@ paths:
     get:
       tags: 
       - task
-      summary: Stop tasks
+      summary: Stop task
       parameters: 
       - name: taskId
         in: query
@@ -400,7 +400,57 @@ paths:
           $ref: '#/components/responses/404NotFound'
         500:
           $ref: '#/components/responses/500ServerErr'
-  
+        
+  /task/cancelTask:
+    get:
+      tags: 
+      - task
+      summary: Cancel task
+      parameters: 
+      - name: taskId
+        in: query
+        required: true
+        description: Id of the task which is to be cancel
+        schema:
+          type: string
+      - name: phone
+        in: query
+        required: true
+        description: Phone of the user who has published the task
+        schema:
+          type: string
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+    
+  /ad/getRecommendAds:
+    get:
+      tags: 
+      - ad
+      summary: Advertisement recommendation
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: List of recommended advertisements
+                items:
+                  $ref: '#/components/schemas/advertisement'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
 components:
   schemas:
     userJson:
@@ -504,6 +554,16 @@ components:
             - $ref: '#/components/schemas/questionnaire'
             - $ref: '#/components/schemas/dataCollection'
             - $ref: '#/components/schemas/recruitment'
+    advertisement:
+      type: object
+      description: Advertisement
+      properties:
+        link:
+          type: string
+          description: Advertisement link
+        image:
+          type: string
+          description: Image source link of advertisement
   responses:
     200StatusOK:
       description: Status OK
