@@ -215,42 +215,100 @@ paths:
         content:
           application/x-www-form-urlencoded:
             schema:
+              $ref: '#/components/schemas/task'
+      responses:
+        200:
+          description: OK
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                  task:
+                    $ref: '#/components/schemas/task'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+  
+  /task/stopTask:
+    get:
+      tags: 
+      - task
+      summary: Stop tasks
+      parameters: 
+      - name: id
+        in: query
+        required: true
+        description: Id of the task which is to be stop
+        schema:
+          type: string
+      - name: phone
+        in: query
+        required: true
+        description: Phone of the user who has published the task
+        schema:
+          type: string
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+  
+  /task/verifyTask:
+    post:
+      tags: 
+      - task
+      summary: Verify tasks
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
               type: object
               properties:
-                name:
+                id:
                   type: string
-                  description: Task name
-                brief-intro:
+                  description: Id of the task which is to be verify
+                publisher:
                   type: string
-                  description: Must less then 20 characters
-                type:
-                  type: string
-                  description: Task type, questionnaire, data collection, recruit
-                contact:
-                  type: string
-                  description: Contact of the publisher
-                requirements:
+                  description: Phone of the user who has published the task
+                accepter:
                   type: array
-                  description: The types of target people
+                  description: Phone of the user(s) who has accepted and completed the task
                   items:
                     type: string
-                    description: Certain type
-                ddl:
-                  type: string
-                  description: The deadline for the task
-                count:
-                  type: number
-                  description: Total count of tasks
-                reward:
-                  type: number
-                  description: Reward for finshing the task (one person)
-                content:
-                  type: object
-                  description: All content for task, in json format (see schema of questionnaire, dataCollection and recruitment for detail)
-                  oneOf:
-                    - $ref: '#/components/schemas/questionnaire'
-                    - $ref: '#/components/schemas/dataCollection'
-                    - $ref: '#/components/schemas/recruitment'
+                    description: Phone number
+                result:
+                  type: boolean
+                  description: True for confirm, false for reject
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+  
+  /task/updateTask:
+    post:
+      tags: 
+      - task
+      summary: Update/Modify Task
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/task'
       responses:
         200:
           $ref: '#/components/responses/200StatusOK'
@@ -261,6 +319,7 @@ paths:
         500:
           $ref: '#/components/responses/500ServerErr'
       
+  
 components:
   schemas:
     userJson:
@@ -323,7 +382,47 @@ components:
         others:
           type: string
           description: Other information or requirement
-        
+    task:
+      type: object
+      description: Task info
+      properties:
+        id:
+          type: string
+          description: Task id, which is given after publishing, only can be empty before publishing
+        name:
+          type: string
+          description: Task name
+        brief-info:
+          type: string
+          description: Brief introfuction of the task
+        type:
+          type: string
+          description: Task type, questionnaire, data collection, recruit
+        contact:
+          type: string
+          description: Contact of the publisher
+        requirements:
+          type: array
+          description: The types of target people
+          items:
+            type: string
+            description: Certain type
+        ddl:
+          type: string
+          description: The deadline for the task
+        count:
+          type: number
+          description: Total count of tasks
+        reward:
+          type: number
+          description: Reward for finshing the task (one person)
+        content:
+          type: object
+          description: All content for task, in json format (see schema of task for detail)
+          oneOf:
+            - $ref: '#/components/schemas/questionnaire'
+            - $ref: '#/components/schemas/dataCollection'
+            - $ref: '#/components/schemas/recruitment'
   responses:
     200StatusOK:
       description: Status OK
