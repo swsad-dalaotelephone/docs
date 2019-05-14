@@ -4,6 +4,7 @@ info:
   description: 'All apis for Bao Bao Zhuan.'
   termsOfService: https://swsad-dalaotelephone.github.io/docs/%E5%90%8E%E7%AB%AF%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83.html###%E6%8E%A5%E5%8F%A3%E8%A7%84%E8%8C%83
   contact:
+    name: gitgiter
     email: 1176748429@qq.com
   license:
     name: Apache 2.0
@@ -134,7 +135,78 @@ paths:
         404:
           $ref: '#/components/responses/404NotFound'
           
-        
+  /user/updateProfile:
+    post:
+      tags:
+      - user
+      summary: Update user profile
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                nickName:
+                  type: string
+                  description: Nick name
+                sex:
+                  type: string
+                  description: Sex
+                birthday:
+                  type: string
+                  description: Birthday
+                campus:
+                  type: string
+                  description: One of the campuses in SYSU
+                grade:
+                  type: string
+                  description: Grade
+                major:
+                  type: string
+                  description: Major
+                preferences:
+                  type: array
+                  description: The types of the task which the user interest in.
+                  items:
+                    type: string
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+                  
+  /user/modifyPassword:
+    post:
+      tags:
+      - user
+      summary: Modify user password
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                oldPassword:
+                  type: string
+                  description: The old password
+                newPasword:
+                  type: string
+                  description: The new password
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+                
+      
 components:
   schemas:
     userJson:
