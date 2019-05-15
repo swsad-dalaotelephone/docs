@@ -17,7 +17,7 @@ servers:
 - url: https://api.baobaozhuan.cn/
 
 paths:
-  /weAppLogin:
+  /user/loginWeApp:
     get:
       tags: 
       - user
@@ -40,7 +40,7 @@ paths:
                   msg:
                     type: string
                   user:
-                    $ref: '#/components/schemas/userJson'
+                    $ref: '#/components/schemas/user'
                   openId:
                     type: string
         400:
@@ -50,7 +50,7 @@ paths:
         500:
           $ref: '#/components/responses/500ServerErr'
           
-  /login:
+  /user/login:
     post:
       tags:
       - user
@@ -80,7 +80,7 @@ paths:
         404:
           $ref: '#/components/responses/404NotFound'
       
-  /register:
+  /user/register:
     post:
       tags:
       - user
@@ -114,7 +114,7 @@ paths:
                   msg:
                     type: string
                   user:
-                    $ref: '#/components/schemas/userJson'
+                    $ref: '#/components/schemas/user'
         400:
           $ref: '#/components/responses/400BadRequest'
         404:
@@ -122,7 +122,7 @@ paths:
         500:
           $ref: '#/components/responses/500ServerErr'
       
-  /logout:
+  /user/logout:
     get:
       tags:
       - user
@@ -146,27 +146,30 @@ paths:
             schema:
               type: object
               properties:
+                id:
+                  type: string
+                  description: User id, cannot be empty
                 nickName:
                   type: string
-                  description: Nick name
-                sex:
+                  description: New nick name, or empty
+                gender:
                   type: string
-                  description: Sex
+                  description: New gender, or empty
                 birthday:
                   type: string
-                  description: Birthday
+                  description: New birthday, or empty
                 campus:
                   type: string
-                  description: One of the campuses in SYSU
+                  description: One of the campuses in SYSU, or empty
                 grade:
                   type: string
-                  description: Grade
-                major:
+                  description: New grade, or empty
+                school:
                   type: string
-                  description: Major
+                  description: School, or empty
                 preferences:
                   type: array
-                  description: The types of the task which the user interest in.
+                  description: The types of the task which the user interest in, or empty.
                   items:
                     type: string
       responses:
@@ -190,6 +193,9 @@ paths:
             schema:
               type: object
               properties:
+                id:
+                  type: string
+                  description: User id
                 oldPassword:
                   type: string
                   description: The old password
@@ -247,10 +253,10 @@ paths:
         description: Id of the task which is to be stop
         schema:
           type: string
-      - name: phone
+      - name: userId
         in: query
         required: true
-        description: Phone of the user who has published the task
+        description: Id of the user who has published the task
         schema:
           type: string
       responses:
@@ -279,13 +285,13 @@ paths:
                   description: Id of the task which is to be verify
                 publisher:
                   type: string
-                  description: Phone of the user who has published the task
+                  description: Id of the user who has published the task
                 accepter:
                   type: array
-                  description: Phone of the user(s) who has accepted and completed the task
+                  description: Id of the user(s) who has/have accepted and completed the task
                   items:
                     type: string
-                    description: Phone number
+                    description: User id
                 result:
                   type: boolean
                   description: True for confirm, false for reject
@@ -331,10 +337,10 @@ paths:
         description: Id of the task which is chosen
         schema:
           type: string
-      - name: phone
+      - name: userId
         in: query
         required: true
-        description: Phone of the user who try to accept the task
+        description: Id of the user who try to accept the task
         schema:
           type: string
       responses:
@@ -353,10 +359,10 @@ paths:
       - task
       summary: Get the list of undo tasks, which will be recommended to the user
       parameters: 
-      - name: phone
+      - name: userId
         in: query
         required: false
-        description: Phone of the user, can be empty?
+        description: Id of the user, can be empty?
         schema:
           type: string
       responses:
@@ -413,10 +419,10 @@ paths:
         description: Id of the task which is to be cancel
         schema:
           type: string
-      - name: phone
+      - name: userId
         in: query
         required: true
-        description: Phone of the user who has published the task
+        description: Id of the user who has published the task
         schema:
           type: string
       responses:
@@ -453,15 +459,31 @@ paths:
           
 components:
   schemas:
-    userJson:
+    user:
       type: object
       properties:
+        id:
+          type: string
         nickName:
+          type: string
+        gender:
+          type: string
+        brithday:
+          type: string
+        campus:
+          type: string
+        school:
+          type: string
+        grade:
           type: string
         phone:
           type: string
         email:
           type: string
+        preferences:
+          type: array
+          items:
+            type: string
     questionnaire:
       type: object
       description: All content of the questionnaire, in json format
@@ -517,9 +539,12 @@ components:
       type: object
       description: Task info
       properties:
-        id:
+        taskId:
           type: string
           description: Task id, which is given after publishing, only can be empty before publishing
+        userId:
+          type: string
+          description: User id of the publisher
         name:
           type: string
           description: Task name
@@ -558,6 +583,9 @@ components:
       type: object
       description: Advertisement
       properties:
+        id: 
+          type: string
+          description: Advertisement id
         link:
           type: string
           description: Advertisement link
