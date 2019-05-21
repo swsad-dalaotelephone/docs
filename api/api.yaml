@@ -91,7 +91,7 @@ paths:
             schema:
               type: object
               properties:
-                nickName:
+                nick_name:
                   type: string
                   description: Nick name
                 phone:
@@ -100,7 +100,7 @@ paths:
                 password:
                   type: string
                   description: Password
-                openId:
+                open_id:
                   type: string
                   description: openId for identifying wechat user
       responses:
@@ -149,7 +149,7 @@ paths:
                 id:
                   type: string
                   description: User id, cannot be empty
-                nickName:
+                nick_name:
                   type: string
                   description: New nick name, or empty
                 gender:
@@ -158,20 +158,21 @@ paths:
                 birthday:
                   type: string
                   description: New birthday, or empty
-                campus:
-                  type: string
-                  description: One of the campuses in SYSU, or empty
+                campus_id:
+                  type: integer
+                  description: Id of campus in SYSU, or empty
                 grade:
                   type: string
                   description: New grade, or empty
-                school:
-                  type: string
-                  description: School, or empty
+                school_id:
+                  type: integer
+                  description: Id of school, or empty
                 preferences:
                   type: array
                   description: The types of the task which the user interest in, or empty.
                   items:
-                    type: string
+                    type: integer
+                    description: Id of tag
       responses:
         200:
           $ref: '#/components/responses/200StatusOK'
@@ -196,10 +197,10 @@ paths:
                 id:
                   type: string
                   description: User id
-                oldPassword:
+                old_pass:
                   type: string
                   description: The old password
-                newPasword:
+                new_pass:
                   type: string
                   description: The new password
       responses:
@@ -247,13 +248,13 @@ paths:
       - task
       summary: Stop task
       parameters: 
-      - name: taskId
+      - name: task_id
         in: query
         required: true
-        description: Id of the task which is to be stop
+        description: Id of the task which is to be stopped
         schema:
           type: string
-      - name: userId
+      - name: user_id
         in: query
         required: true
         description: Id of the user who has published the task
@@ -280,13 +281,13 @@ paths:
             schema:
               type: object
               properties:
-                taskId:
+                task_id:
                   type: string
                   description: Id of the task which is to be verify
-                publisher:
+                publisher_id:
                   type: string
                   description: Id of the user who has published the task
-                accepter:
+                accepter_id:
                   type: array
                   description: Id of the user(s) who has/have accepted and completed the task
                   items:
@@ -295,6 +296,9 @@ paths:
                 result:
                   type: boolean
                   description: True for confirm, false for reject
+                feedback:
+                  type: string
+                  description: Feedback for result
       responses:
         200:
           $ref: '#/components/responses/200StatusOK'
@@ -325,19 +329,39 @@ paths:
         500:
           $ref: '#/components/responses/500ServerErr'
       
+  /task/submitTask:
+    post:
+      tags: 
+      - task
+      summary: Submit Task
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/task'
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
   /task/acceptTask:
     get:
       tags: 
       - task
       summary: Accept task
       parameters: 
-      - name: taskId
+      - name: task_id
         in: query
         required: true
         description: Id of the task which is chosen
         schema:
           type: string
-      - name: userId
+      - name: user_id
         in: query
         required: true
         description: Id of the user who try to accept the task
@@ -359,7 +383,7 @@ paths:
       - task
       summary: Get the list of undo tasks, which will be recommended to the user
       parameters: 
-      - name: userId
+      - name: user_id
         in: query
         required: false
         description: Id of the user, can be empty?
@@ -388,7 +412,7 @@ paths:
       - task
       summary: Get the detail information of the task
       parameters: 
-      - name: taskId
+      - name: task_id
         in: query
         description: Id of the task which is queried
         schema:
@@ -407,22 +431,22 @@ paths:
         500:
           $ref: '#/components/responses/500ServerErr'
         
-  /task/cancelTask:
+  /task/quitTask:
     get:
       tags: 
       - task
-      summary: Cancel task
+      summary: Quit/Give up task
       parameters: 
-      - name: taskId
+      - name: task_id
         in: query
         required: true
-        description: Id of the task which is to be cancel
+        description: Id of the task which is to be given up
         schema:
           type: string
-      - name: userId
+      - name: user_id
         in: query
         required: true
-        description: Id of the user who has published the task
+        description: Id of the user who has accepted the task
         schema:
           type: string
       responses:
@@ -456,6 +480,64 @@ paths:
           $ref: '#/components/responses/404NotFound'
         500:
           $ref: '#/components/responses/500ServerErr'
+  
+  /resources/getSchoolById:
+    get:
+      tags: 
+      - resources
+      summary: Get school name by id
+      parameters:
+      - name: school_id
+        in: query
+        description: Id of school
+        schema:
+          type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  school_name: 
+                    type: string
+                    description: Name of school
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+  
+  /resources/getCampusById:
+    get:
+      tags: 
+      - resources
+      summary: Get campus name by id
+      parameters:
+      - name: campus_id
+        in: query
+        description: Id of campus
+        schema:
+          type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  campus_name: 
+                    type: string
+                    description: Name of campus
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
           
 components:
   schemas:
@@ -464,16 +546,16 @@ components:
       properties:
         id:
           type: string
-        nickName:
+        nick_name:
           type: string
         gender:
           type: string
         brithday:
           type: string
-        campus:
-          type: string
-        school:
-          type: string
+        campus_id:
+          type: integer
+        school_id:
+          type: integer
         grade:
           type: string
         phone:
@@ -488,9 +570,12 @@ components:
       type: object
       description: All content of the questionnaire, in json format
       properties:
-        questDes:
+        quest_des:
           type: string
           description: Descripition for the questionnaire
+        statistics:
+          type: object
+          description: Reserved key, don't need to care now.
         questions:
           type: array
           description: All questions
@@ -500,10 +585,10 @@ components:
       type: object
       description: Each question
       properties:
-        questType:
+        quest_type:
           type: string
           description: Type of the question
-        questOption:
+        quest_option:
           type: array
           description: Options of a question
           items:
@@ -513,17 +598,17 @@ components:
       type: object
       description: All content of data collection, in json format
       properties:
-        dataDes:
+        data_des:
           type: string
           description: Description for the data required
-        submitWay:
+        submit_way:
           type: string
           description: Email only, may change in future.
     recruitment:
       type: object
       description: All content of recruitment
       properties:
-        recruitDes:
+        recruit_des:
           type: string
           description: Description for the recruitment 
         time:
@@ -539,16 +624,16 @@ components:
       type: object
       description: Task info
       properties:
-        taskId:
+        task_id:
           type: string
           description: Task id, which is given after publishing, only can be empty before publishing
-        userId:
+        user_id:
           type: string
           description: User id of the publisher
         name:
           type: string
           description: Task name
-        brief-info:
+        brief_info:
           type: string
           description: Brief information of the task
         type:
@@ -566,9 +651,15 @@ components:
         ddl:
           type: string
           description: The deadline for the task
-        count:
-          type: number
-          description: Total count of tasks
+        required_count:
+          type: integer
+          description: Total count of required tasks
+        submited_count:
+          type: integer
+          description: Total count of submited tasks
+        finished_count:
+          type: integer
+          description: Total count of finished tasks
         reward:
           type: number
           description: Reward for finshing the task (one person)
