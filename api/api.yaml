@@ -1,0 +1,635 @@
+openapi: 3.0.0
+info:
+  title: Bao Bao Zhuan
+  description: 'All apis for Bao Bao Zhuan.'
+  termsOfService: https://swsad-dalaotelephone.github.io/docs/%E5%90%8E%E7%AB%AF%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83.html###%E6%8E%A5%E5%8F%A3%E8%A7%84%E8%8C%83
+  contact:
+    name: gitgiter
+    email: 1176748429@qq.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+externalDocs:
+  description: Find out more about baobaozhuan
+  url: https://swsad-dalaotelephone.github.io/docs/
+servers:
+- url: https://api.baobaozhuan.cn/
+
+paths:
+  /user/loginWeApp:
+    get:
+      tags: 
+      - user
+      summary: Login weApp
+      parameters:
+      - name: code
+        in: query
+        required: true
+        description: The code for getting openid and session key.
+        schema:
+          type: string
+      responses:
+        200:
+          description: Status OK. If user exist, return msg and user info, else return msg and openId.
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                  user:
+                    $ref: '#/components/schemas/user'
+                  openId:
+                    type: string
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
+  /user/login:
+    post:
+      tags:
+      - user
+      summary: Login account
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                phone:
+                  type: string
+                  description: Phone number
+                password:
+                  type: string
+                  description: Password
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+        404:
+          $ref: '#/components/responses/404NotFound'
+      
+  /user/register:
+    post:
+      tags:
+      - user
+      summary: Register account
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                nickName:
+                  type: string
+                  description: Nick name
+                phone:
+                  type: string
+                  description: Phone number
+                password:
+                  type: string
+                  description: Password
+                openId:
+                  type: string
+                  description: openId for identifying wechat user
+      responses:
+        200:
+          description: OK
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                  user:
+                    $ref: '#/components/schemas/user'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+      
+  /user/logout:
+    get:
+      tags:
+      - user
+      summary: Logout account
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+          
+  /user/updateProfile:
+    post:
+      tags:
+      - user
+      summary: Update user profile
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: User id, cannot be empty
+                nickName:
+                  type: string
+                  description: New nick name, or empty
+                gender:
+                  type: string
+                  description: New gender, or empty
+                birthday:
+                  type: string
+                  description: New birthday, or empty
+                campus:
+                  type: string
+                  description: One of the campuses in SYSU, or empty
+                grade:
+                  type: string
+                  description: New grade, or empty
+                school:
+                  type: string
+                  description: School, or empty
+                preferences:
+                  type: array
+                  description: The types of the task which the user interest in, or empty.
+                  items:
+                    type: string
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+                  
+  /user/modifyPassword:
+    post:
+      tags:
+      - user
+      summary: Modify user password
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: User id
+                oldPassword:
+                  type: string
+                  description: The old password
+                newPasword:
+                  type: string
+                  description: The new password
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+  
+  /task/publishTask:
+    post:
+      tags:
+      - task
+      summary: Publish task
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/task'
+      responses:
+        200:
+          description: OK
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                  task:
+                    $ref: '#/components/schemas/task'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+  
+  /task/stopTask:
+    get:
+      tags: 
+      - task
+      summary: Stop task
+      parameters: 
+      - name: taskId
+        in: query
+        required: true
+        description: Id of the task which is to be stop
+        schema:
+          type: string
+      - name: userId
+        in: query
+        required: true
+        description: Id of the user who has published the task
+        schema:
+          type: string
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+  
+  /task/verifyTask:
+    post:
+      tags: 
+      - task
+      summary: Verify tasks
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                taskId:
+                  type: string
+                  description: Id of the task which is to be verify
+                publisher:
+                  type: string
+                  description: Id of the user who has published the task
+                accepter:
+                  type: array
+                  description: Id of the user(s) who has/have accepted and completed the task
+                  items:
+                    type: string
+                    description: User id
+                result:
+                  type: boolean
+                  description: True for confirm, false for reject
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+  
+  /task/updateTask:
+    post:
+      tags: 
+      - task
+      summary: Update/Modify Task
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/task'
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+      
+  /task/acceptTask:
+    get:
+      tags: 
+      - task
+      summary: Accept task
+      parameters: 
+      - name: taskId
+        in: query
+        required: true
+        description: Id of the task which is chosen
+        schema:
+          type: string
+      - name: userId
+        in: query
+        required: true
+        description: Id of the user who try to accept the task
+        schema:
+          type: string
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
+  /task/getRecommendTasks:
+    get:
+      tags: 
+      - task
+      summary: Get the list of undo tasks, which will be recommended to the user
+      parameters: 
+      - name: userId
+        in: query
+        required: false
+        description: Id of the user, can be empty?
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: List of tasks
+                items:
+                  $ref: '#/components/schemas/task'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+  
+  /task/getTaskDetail:
+    get:
+      tags: 
+      - task
+      summary: Get the detail information of the task
+      parameters: 
+      - name: taskId
+        in: query
+        description: Id of the task which is queried
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/task'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+        
+  /task/cancelTask:
+    get:
+      tags: 
+      - task
+      summary: Cancel task
+      parameters: 
+      - name: taskId
+        in: query
+        required: true
+        description: Id of the task which is to be cancel
+        schema:
+          type: string
+      - name: userId
+        in: query
+        required: true
+        description: Id of the user who has published the task
+        schema:
+          type: string
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+    
+  /ad/getRecommendAds:
+    get:
+      tags: 
+      - ad
+      summary: Advertisement recommendation
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: List of recommended advertisements
+                items:
+                  $ref: '#/components/schemas/advertisement'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
+components:
+  schemas:
+    user:
+      type: object
+      properties:
+        id:
+          type: string
+        nickName:
+          type: string
+        gender:
+          type: string
+        brithday:
+          type: string
+        campus:
+          type: string
+        school:
+          type: string
+        grade:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        preferences:
+          type: array
+          items:
+            type: string
+    questionnaire:
+      type: object
+      description: All content of the questionnaire, in json format
+      properties:
+        questDes:
+          type: string
+          description: Descripition for the questionnaire
+        questions:
+          type: array
+          description: All questions
+          items:
+            $ref: '#/components/schemas/question'
+    question:
+      type: object
+      description: Each question
+      properties:
+        questType:
+          type: string
+          description: Type of the question
+        questOption:
+          type: array
+          description: Options of a question
+          items:
+            type: string
+            description: Option
+    dataCollection:
+      type: object
+      description: All content of data collection, in json format
+      properties:
+        dataDes:
+          type: string
+          description: Description for the data required
+        submitWay:
+          type: string
+          description: Email only, may change in future.
+    recruitment:
+      type: object
+      description: All content of recruitment
+      properties:
+        recruitDes:
+          type: string
+          description: Description for the recruitment 
+        time:
+          type: string
+          description: Time for the task
+        location:
+          type: string
+          description: Location for the task
+        others:
+          type: string
+          description: Other information or requirement
+    task:
+      type: object
+      description: Task info
+      properties:
+        taskId:
+          type: string
+          description: Task id, which is given after publishing, only can be empty before publishing
+        userId:
+          type: string
+          description: User id of the publisher
+        name:
+          type: string
+          description: Task name
+        brief-info:
+          type: string
+          description: Brief information of the task
+        type:
+          type: string
+          description: Task type, questionnaire, data collection, recruit
+        contact:
+          type: string
+          description: Contact of the publisher
+        requirements:
+          type: array
+          description: The types of target people
+          items:
+            type: string
+            description: Certain type
+        ddl:
+          type: string
+          description: The deadline for the task
+        count:
+          type: number
+          description: Total count of tasks
+        reward:
+          type: number
+          description: Reward for finshing the task (one person)
+        content:
+          type: object
+          description: All content for task, in json format (see schema of task for detail)
+          oneOf:
+            - $ref: '#/components/schemas/questionnaire'
+            - $ref: '#/components/schemas/dataCollection'
+            - $ref: '#/components/schemas/recruitment'
+    advertisement:
+      type: object
+      description: Advertisement
+      properties:
+        id: 
+          type: string
+          description: Advertisement id
+        link:
+          type: string
+          description: Advertisement link
+        image:
+          type: string
+          description: Image source link of advertisement
+  responses:
+    200StatusOK:
+      description: Status OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              msg:
+                type: string
+    400BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              msg:
+                type: string
+                default: 'Bad Request'
+    404NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              msg:
+                type: string
+                default: 'Not Found'
+    500ServerErr:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              msg:
+                type: string
+                default: 'Internal Server Error'
+              
