@@ -538,6 +538,66 @@ paths:
           $ref: '#/components/responses/404NotFound'
         500:
           $ref: '#/components/responses/500ServerErr'
+  
+  /resources/getPreferencesById:
+    get:
+      tags: 
+      - resources
+      summary: Get user preferences by user id
+      parameters:
+      - name: user_id
+        in: query
+        description: Id of user
+        schema:
+          type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tag_id: 
+                    type: array
+                    items:
+                      description: Tag id of the tag
+                      type: string
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+  
+  /resources/getTagById:
+    get:
+      tags: 
+      - resources
+      summary: Get tag name by tag id
+      parameters:
+      - name: tag_id
+        in: query
+        description: Id of tag
+        schema:
+          type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tag_name: 
+                    type: string
+                    description: Name of tag
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
           
 components:
   schemas:
@@ -546,26 +606,31 @@ components:
       properties:
         id:
           type: string
+          description: Id of user
         nick_name:
           type: string
+          description: Nick name of user
         gender:
           type: string
+          description: Gender of user
         brithday:
           type: string
+          description: Birthday of user
         campus_id:
           type: integer
+          description: Campus id of user, not the name of campus
         school_id:
           type: integer
+          description: School id of user, not the name of school
         grade:
           type: string
+          description: Grade of user
         phone:
           type: string
+          description: Phone number of user
         email:
           type: string
-        preferences:
-          type: array
-          items:
-            type: string
+          description: Email of user
     questionnaire:
       type: object
       description: All content of the questionnaire, in json format

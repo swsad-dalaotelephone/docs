@@ -27,3 +27,4 @@
 | v1.5 | 2019-05-14 | 取消任务、广告投放api | gitgiter |
 | v1.6 | 2019-05-15 | 初步完善api | gitgiter |
 | v2.0 | 2019-05-21 | 全面完善api | gitgiter |
+| v2.1 | 2019-05-21 | 偏好、标签api | gitgiter |
