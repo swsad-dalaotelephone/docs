@@ -338,7 +338,17 @@ paths:
         content:
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/task'
+              type: object
+              properties:
+                task_id:
+                  type: string
+                  description: Task id
+                accepter_id:
+                  type: string
+                  description: Id of user who has accepted the task
+                answer:
+                  type: object
+                  description: Answer for questionnaire or information for recruitment, in json format
       responses:
         200:
           $ref: '#/components/responses/200StatusOK'
@@ -653,6 +663,9 @@ components:
         quest_type:
           type: string
           description: Type of the question
+        quest_title:
+          type: string
+          description: The question
         quest_option:
           type: array
           description: Options of a question
@@ -682,9 +695,9 @@ components:
         location:
           type: string
           description: Location for the task
-        others:
-          type: string
-          description: Other information or requirement
+        participant_info:
+          type: object
+          description: Some required information of the participant
     task:
       type: object
       description: Task info

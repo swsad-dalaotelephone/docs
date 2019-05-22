@@ -28,3 +28,5 @@
 | v1.6 | 2019-05-15 | 初步完善api | gitgiter |
 | v2.0 | 2019-05-21 | 全面完善api | gitgiter |
 | v2.1 | 2019-05-21 | 偏好、标签api | gitgiter |
+| v2.2 | 2019-05-21 | 提交任务api，细节完善 | gitgiter |
+
