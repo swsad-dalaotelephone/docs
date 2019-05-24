@@ -41,7 +41,7 @@ paths:
                     type: string
                   user:
                     $ref: '#/components/schemas/user'
-                  openId:
+                  open_id:
                     type: string
         400:
           $ref: '#/components/responses/400BadRequest'
@@ -102,7 +102,7 @@ paths:
                   description: Password
                 open_id:
                   type: string
-                  description: openId for identifying wechat user
+                  description: OpenId for identifying wechat user
       responses:
         200:
           description: OK
@@ -254,7 +254,7 @@ paths:
         description: Id of the task which is to be stopped
         schema:
           type: string
-      - name: user_id
+      - name: publisher_id
         in: query
         required: true
         description: Id of the user who has published the task
@@ -371,7 +371,7 @@ paths:
         description: Id of the task which is chosen
         schema:
           type: string
-      - name: user_id
+      - name: accepter_id
         in: query
         required: true
         description: Id of the user who try to accept the task
@@ -453,7 +453,7 @@ paths:
         description: Id of the task which is to be given up
         schema:
           type: string
-      - name: user_id
+      - name: accepter_id
         in: query
         required: true
         description: Id of the user who has accepted the task
@@ -702,10 +702,10 @@ components:
       type: object
       description: Task info
       properties:
-        task_id:
+        id:
           type: string
           description: Task id, which is given after publishing, only can be empty before publishing
-        user_id:
+        publisher_id:
           type: string
           description: User id of the publisher
         name:

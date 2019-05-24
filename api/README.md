@@ -29,4 +29,5 @@
 | v2.0 | 2019-05-21 | 全面完善api | gitgiter |
 | v2.1 | 2019-05-21 | 偏好、标签api | gitgiter |
 | v2.2 | 2019-05-21 | 提交任务api，细节完善 | gitgiter |
+| v2.3 | 2019-05-24 | 字段命名修改，user_id细化 | gitgiter |
 
