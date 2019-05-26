@@ -359,6 +359,41 @@ paths:
           $ref: '#/components/responses/404NotFound'
         500:
           $ref: '#/components/responses/500ServerErr'
+  
+  /task/getSubmittedTasks:
+    get:
+      tags: 
+      - task
+      summary: Get the list of submitted tasks
+      parameters: 
+      - name: task_id
+        in: query
+        required: true
+        description: Id of the task
+        schema:
+          type: string
+      - name: publisher_id
+        in: query
+        required: true
+        description: Id of the publisher
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: List of tasks
+                items:
+                  $ref: '#/components/schemas/task'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
           
   /task/acceptTask:
     get:
@@ -417,6 +452,64 @@ paths:
         500:
           $ref: '#/components/responses/500ServerErr'
   
+  /task/getPublishedTasks:
+    get:
+      tags: 
+      - task
+      summary: Get the list of published tasks
+      parameters: 
+      - name: publisher_id
+        in: query
+        required: true
+        description: Id of the publisher
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: List of tasks
+                items:
+                  $ref: '#/components/schemas/task'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
+  /task/getAcceptedTasks:
+    get:
+      tags: 
+      - task
+      summary: Get the list of accepted tasks
+      parameters: 
+      - name: accepter_id
+        in: query
+        required: true
+        description: Id of the accepter
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: List of tasks
+                items:
+                  $ref: '#/components/schemas/task'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
   /task/getTaskDetail:
     get:
       tags: 
