@@ -15,6 +15,7 @@ externalDocs:
   url: https://swsad-dalaotelephone.github.io/docs/
 servers:
 - url: https://api.baobaozhuan.cn/
+- url: http://127.0.0.1:8080
 
 paths:
   /user/loginWeApp:
@@ -41,7 +42,7 @@ paths:
                     type: string
                   user:
                     $ref: '#/components/schemas/user'
-                  openId:
+                  open_id:
                     type: string
         400:
           $ref: '#/components/responses/400BadRequest'
@@ -102,7 +103,7 @@ paths:
                   description: Password
                 open_id:
                   type: string
-                  description: openId for identifying wechat user
+                  description: OpenId for identifying wechat user
       responses:
         200:
           description: OK
@@ -254,7 +255,7 @@ paths:
         description: Id of the task which is to be stopped
         schema:
           type: string
-      - name: user_id
+      - name: publisher_id
         in: query
         required: true
         description: Id of the user who has published the task
@@ -358,6 +359,41 @@ paths:
           $ref: '#/components/responses/404NotFound'
         500:
           $ref: '#/components/responses/500ServerErr'
+  
+  /task/getSubmittedTasks:
+    get:
+      tags: 
+      - task
+      summary: Get the list of submitted tasks
+      parameters: 
+      - name: task_id
+        in: query
+        required: true
+        description: Id of the task
+        schema:
+          type: string
+      - name: publisher_id
+        in: query
+        required: true
+        description: Id of the publisher
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: List of tasks
+                items:
+                  $ref: '#/components/schemas/task'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
           
   /task/acceptTask:
     get:
@@ -371,7 +407,7 @@ paths:
         description: Id of the task which is chosen
         schema:
           type: string
-      - name: user_id
+      - name: accepter_id
         in: query
         required: true
         description: Id of the user who try to accept the task
@@ -416,6 +452,64 @@ paths:
         500:
           $ref: '#/components/responses/500ServerErr'
   
+  /task/getPublishedTasks:
+    get:
+      tags: 
+      - task
+      summary: Get the list of published tasks
+      parameters: 
+      - name: publisher_id
+        in: query
+        required: true
+        description: Id of the publisher
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: List of tasks
+                items:
+                  $ref: '#/components/schemas/task'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
+  task/getAcceptedTasks:
+    get:
+      tags: 
+      - task
+      summary: Get the list of accepted tasks
+      parameters: 
+      - name: accepter_id
+        in: query
+        required: true
+        description: Id of the accepter
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: List of tasks
+                items:
+                  $ref: '#/components/schemas/task'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
   /task/getTaskDetail:
     get:
       tags: 
@@ -453,7 +547,7 @@ paths:
         description: Id of the task which is to be given up
         schema:
           type: string
-      - name: user_id
+      - name: accepter_id
         in: query
         required: true
         description: Id of the user who has accepted the task
@@ -520,6 +614,32 @@ paths:
         500:
           $ref: '#/components/responses/500ServerErr'
   
+  /resources/getSchoolList:
+    get:
+      tags: 
+      - resources
+      summary: Get all school names
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  school_names: 
+                    type: array
+                    description: School names list
+                    items:
+                      type: string
+                      description: Name of school
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
   /resources/getCampusById:
     get:
       tags: 
@@ -549,6 +669,32 @@ paths:
         500:
           $ref: '#/components/responses/500ServerErr'
   
+  /resources/getCampusList:
+    get:
+      tags: 
+      - resources
+      summary: Get all campus names
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  campus_names: 
+                    type: array
+                    description: Campus names list
+                    items:
+                      type: string
+                      description: Name of campus
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
   /resources/getPreferencesById:
     get:
       tags: 
@@ -602,6 +748,32 @@ paths:
                   tag_name: 
                     type: string
                     description: Name of tag
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
+  /resources/getTagList:
+    get:
+      tags: 
+      - resources
+      summary: Get all tag names
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tag_names: 
+                    type: array
+                    description: Tag names list
+                    items:
+                      type: string
+                      description: Name of campus
         400:
           $ref: '#/components/responses/400BadRequest'
         404:
@@ -702,10 +874,10 @@ components:
       type: object
       description: Task info
       properties:
-        task_id:
+        id:
           type: string
           description: Task id, which is given after publishing, only can be empty before publishing
-        user_id:
+        publisher_id:
           type: string
           description: User id of the publisher
         name:
@@ -721,11 +893,11 @@ components:
           type: string
           description: Contact of the publisher
         requirements:
-          type: array
-          description: The types of target people
-          items:
-            type: string
-            description: Certain type
+          type: object
+          description: The types of target people, in json format
+        tag_id:
+          type: integer
+          description: The tag id of the task
         ddl:
           type: string
           description: The deadline for the task
