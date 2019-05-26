@@ -15,6 +15,7 @@ externalDocs:
   url: https://swsad-dalaotelephone.github.io/docs/
 servers:
 - url: https://api.baobaozhuan.cn/
+- url: http://127.0.0.1:8080
 
 paths:
   /user/loginWeApp:
@@ -520,6 +521,32 @@ paths:
         500:
           $ref: '#/components/responses/500ServerErr'
   
+  /resources/getSchoolList:
+    get:
+      tags: 
+      - resources
+      summary: Get all school names
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  school_names: 
+                    type: array
+                    description: School names list
+                    items:
+                      type: string
+                      description: Name of school
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
   /resources/getCampusById:
     get:
       tags: 
@@ -549,6 +576,32 @@ paths:
         500:
           $ref: '#/components/responses/500ServerErr'
   
+  /resources/getCampusList:
+    get:
+      tags: 
+      - resources
+      summary: Get all campus names
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  campus_names: 
+                    type: array
+                    description: Campus names list
+                    items:
+                      type: string
+                      description: Name of campus
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
   /resources/getPreferencesById:
     get:
       tags: 
@@ -602,6 +655,32 @@ paths:
                   tag_name: 
                     type: string
                     description: Name of tag
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
+  /resources/getTagList:
+    get:
+      tags: 
+      - resources
+      summary: Get all tag names
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tag_names: 
+                    type: array
+                    description: Tag names list
+                    items:
+                      type: string
+                      description: Name of campus
         400:
           $ref: '#/components/responses/400BadRequest'
         404:
@@ -721,11 +800,11 @@ components:
           type: string
           description: Contact of the publisher
         requirements:
-          type: array
-          description: The types of target people
-          items:
-            type: string
-            description: Certain type
+          type: object
+          description: The types of target people, in json format
+        tag_id:
+          type: integer
+          description: The tag id of the task
         ddl:
           type: string
           description: The deadline for the task

@@ -30,4 +30,5 @@
 | v2.1 | 2019-05-21 | 偏好、标签api | gitgiter |
 | v2.2 | 2019-05-21 | 提交任务api，细节完善 | gitgiter |
 | v2.3 | 2019-05-24 | 字段命名修改，user_id细化 | gitgiter |
+| v2.4 | 2019-05-27 | task字段更正，增加resources列表api | gitgiter |
 
