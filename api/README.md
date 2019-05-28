@@ -32,4 +32,5 @@
 | v2.3 | 2019-05-24 | 字段命名修改，user_id细化 | gitgiter |
 | v2.4 | 2019-05-27 | task字段更正，增加resources列表类api | gitgiter |
 | v2.5 | 2019-05-27 | 增加获取已提交、已发布、已接受任务列表api | gitgiter |
+| v2.6 | 2019-05-28 | 修改ad返回格式，完善resources列表类api | gitgiter |
 

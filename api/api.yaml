@@ -574,10 +574,13 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                description: List of recommended advertisements
-                items:
-                  $ref: '#/components/schemas/advertisement'
+                type: object
+                properties:
+                  ads:
+                    type: array
+                    description: List of recommended advertisements
+                    items:
+                      $ref: '#/components/schemas/advertisement'
         400:
           $ref: '#/components/responses/400BadRequest'
         404:
@@ -618,7 +621,7 @@ paths:
     get:
       tags: 
       - resources
-      summary: Get all school names
+      summary: Get all schools
       responses:
         200:
           description: OK
@@ -627,12 +630,11 @@ paths:
               schema:
                 type: object
                 properties:
-                  school_names: 
+                  schools: 
                     type: array
-                    description: School names list
+                    description: School list
                     items:
-                      type: string
-                      description: Name of school
+                      $ref: '#/components/schemas/school'
         400:
           $ref: '#/components/responses/400BadRequest'
         404:
@@ -673,7 +675,7 @@ paths:
     get:
       tags: 
       - resources
-      summary: Get all campus names
+      summary: Get all campuses
       responses:
         200:
           description: OK
@@ -682,12 +684,11 @@ paths:
               schema:
                 type: object
                 properties:
-                  campus_names: 
+                  campuses: 
                     type: array
-                    description: Campus names list
+                    description: Campus list
                     items:
-                      type: string
-                      description: Name of campus
+                      $ref: '#/components/schemas/campus'
         400:
           $ref: '#/components/responses/400BadRequest'
         404:
@@ -714,11 +715,12 @@ paths:
               schema:
                 type: object
                 properties:
-                  tag_id: 
+                  tag_ids:
                     type: array
+                    description: All tag ids
                     items:
-                      description: Tag id of the tag
-                      type: string
+                      type: integer
+                      description: Tag id
         400:
           $ref: '#/components/responses/400BadRequest'
         404:
@@ -759,7 +761,7 @@ paths:
     get:
       tags: 
       - resources
-      summary: Get all tag names
+      summary: Get all tags
       responses:
         200:
           description: OK
@@ -768,12 +770,11 @@ paths:
               schema:
                 type: object
                 properties:
-                  tag_names: 
+                  tags: 
                     type: array
-                    description: Tag names list
+                    description: Tag list
                     items:
-                      type: string
-                      description: Name of campus
+                      $ref: '#/components/schemas/tag'
         400:
           $ref: '#/components/responses/400BadRequest'
         404:
@@ -933,6 +934,52 @@ components:
         image:
           type: string
           description: Image source link of advertisement
+    # preference:
+    #   type: object
+    #   description: Preference
+    #   properties:
+    #     tag_ids:
+    #       type: array
+    #       description: All tag ids
+    #       items:
+    #         type: integer
+    #         description: Tag id
+    #     user_id:
+    #       type: string
+    #       description: User id
+    school:
+      type: object
+      description: School
+      properties:
+        id: 
+          type: integer
+          description: School id
+        name:
+          type: string
+          description: School name
+        type:
+          type: string
+          description: School type
+    campus:
+      type: object
+      description: Campus
+      properties:
+        id: 
+          type: integer
+          description: Campus id
+        name:
+          type: string
+          description: Campus name
+    tag:
+      type: object
+      description: Tag
+      properties:
+        id: 
+          type: integer
+          description: Tag id
+        name:
+          type: string
+          description: Tag name
   responses:
     200StatusOK:
       description: Status OK
