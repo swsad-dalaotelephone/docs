@@ -22,6 +22,8 @@
 
 #### 活动图
 
+![终止任务](./Activity Diagrams/终止任务1.0.jpg)
+
 ---
 ## 用例2：验证任务
 #### 用例文本
@@ -70,4 +72,4 @@
 
 #### 活动图
 
-![终止任务](./Activity Diagrams/终止任务1.0.jpg)
+![审核任务](./Activity Diagrams/审核任务1.0.jpg)
