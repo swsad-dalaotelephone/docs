@@ -1,0 +1,1066 @@
+openapi: 3.0.0
+info:
+  title: Bao Bao Zhuan
+  description: 'All apis for Bao Bao Zhuan.'
+  termsOfService: https://swsad-dalaotelephone.github.io/docs/%E5%90%8E%E7%AB%AF%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83.html###%E6%8E%A5%E5%8F%A3%E8%A7%84%E8%8C%83
+  contact:
+    name: gitgiter
+    email: 1176748429@qq.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+externalDocs:
+  description: Find out more about baobaozhuan
+  url: https://swsad-dalaotelephone.github.io/docs/
+servers:
+- url: https://api.baobaozhuan.cn/
+- url: http://127.0.0.1:8080
+
+paths:
+  /user/loginWeApp:
+    get:
+      tags: 
+      - user
+      summary: Login weApp
+      parameters:
+      - name: code
+        in: query
+        required: true
+        description: The code for getting openid and session key.
+        schema:
+          type: string
+      responses:
+        200:
+          description: Status OK. If user exist, return msg and user info, else return msg and openId.
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                  user:
+                    $ref: '#/components/schemas/user'
+                  open_id:
+                    type: string
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
+  /user/login:
+    post:
+      tags:
+      - user
+      summary: Login account, which will return cookie in header when success
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                phone:
+                  type: string
+                  description: Phone number
+                password:
+                  type: string
+                  description: Password
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+        404:
+          $ref: '#/components/responses/404NotFound'
+      
+  /user/register:
+    post:
+      tags:
+      - user
+      summary: Register account
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                nick_name:
+                  type: string
+                  description: Nick name
+                phone:
+                  type: string
+                  description: Phone number
+                password:
+                  type: string
+                  description: Password
+                open_id:
+                  type: string
+                  description: OpenId for identifying wechat user
+      responses:
+        200:
+          description: OK
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                  user:
+                    $ref: '#/components/schemas/user'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+      
+  /user/logout:
+    get:
+      tags:
+      - user
+      summary: Logout account, cookie needed
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+          
+  /user/updateProfile:
+    post:
+      tags:
+      - user
+      summary: Update user, cookie needed 
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: User id, cannot be modified or be empty
+                nick_name:
+                  type: string
+                  description: New nick name
+                phone:
+                  type: string
+                  description: Phone number, cannot be modified or be empty 
+                gender:
+                  type: string
+                  description: New gender
+                birthday:
+                  type: string
+                  description: New birthday
+                campus_id:
+                  type: integer
+                  description: Id of campus in SYSU
+                grade:
+                  type: string
+                  description: New grade
+                school_id:
+                  type: integer
+                  description: Id of school
+                preferences:
+                  type: array
+                  description: The types of the task which the user interests in
+                  items:
+                    type: integer
+                    description: Id of tag
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+                  
+  /user/modifyPassword:
+    post:
+      tags:
+      - user
+      summary: Modify user password, cookie needed
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: User id
+                old_pass:
+                  type: string
+                  description: The old password
+                new_pass:
+                  type: string
+                  description: The new password
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+  
+  /task/publishTask:
+    post:
+      tags:
+      - task
+      summary: Publish task, cookie needed
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/task'
+      responses:
+        200:
+          description: OK
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                  task:
+                    $ref: '#/components/schemas/task'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+  
+  /task/stopTask:
+    get:
+      tags: 
+      - task
+      summary: Stop task, cookie needed
+      parameters: 
+      - name: task_id
+        in: query
+        required: true
+        description: Id of the task which is to be stopped
+        schema:
+          type: string
+      - name: publisher_id
+        in: query
+        required: true
+        description: Id of the user who has published the task
+        schema:
+          type: string
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+  
+  /task/verifyTask:
+    post:
+      tags: 
+      - task
+      summary: Verify tasks, cookie needed
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                task_id:
+                  type: string
+                  description: Id of the task which is to be verify
+                publisher_id:
+                  type: string
+                  description: Id of the user who has published the task
+                accepter_id:
+                  type: array
+                  description: Id of the user(s) who has/have accepted and completed the task
+                  items:
+                    type: string
+                    description: User id
+                result:
+                  type: boolean
+                  description: True for confirm, false for reject
+                feedback:
+                  type: string
+                  description: Feedback for result
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+  
+  /task/updateTask:
+    post:
+      tags: 
+      - task
+      summary: Update/Modify Task, cookie needed
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/task'
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+      
+  /task/submitTask:
+    post:
+      tags: 
+      - task
+      summary: Submit Task, cookie needed
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                task_id:
+                  type: string
+                  description: Task id
+                accepter_id:
+                  type: string
+                  description: Id of user who has accepted the task
+                answer:
+                  type: object
+                  description: Answer for questionnaire or information for recruitment, in json format
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+  
+  /task/getSubmittedTasks:
+    get:
+      tags: 
+      - task
+      summary: Get the list of submitted tasks' acceptance record
+      parameters: 
+      - name: task_id
+        in: query
+        required: true
+        description: Id of the task
+        schema:
+          type: string
+      - name: publisher_id
+        in: query
+        required: true
+        description: Id of the publisher
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                description: List of tasks
+                properties:
+                  submitted:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/acceptance'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
+  /task/acceptTask:
+    get:
+      tags: 
+      - task
+      summary: Accept task, cookie needed
+      parameters: 
+      - name: task_id
+        in: query
+        required: true
+        description: Id of the task which is chosen
+        schema:
+          type: string
+      - name: accepter_id
+        in: query
+        required: true
+        description: Id of the user who try to accept the task
+        schema:
+          type: string
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
+  /task/getRecommendTasks:
+    get:
+      tags: 
+      - task
+      summary: Get the list of undo tasks for recommendation
+      parameters: 
+      - name: user_id
+        in: query
+        required: false
+        description: Id of the user, can be empty?
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                description: List of tasks
+                properties:
+                  tasks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/task'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+  
+  /task/getPublishedTasks:
+    get:
+      tags: 
+      - task
+      summary: Get the list of published tasks
+      parameters: 
+      - name: publisher_id
+        in: query
+        required: true
+        description: Id of the publisher
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                description: List of tasks
+                properties:
+                  tasks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/task'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
+  /task/getAcceptedTasks:
+    get:
+      tags: 
+      - task
+      summary: Get the list of accepted tasks
+      parameters: 
+      - name: accepter_id
+        in: query
+        required: true
+        description: Id of the accepter
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                description: List of tasks
+                properties:
+                  tasks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/task'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
+  /task/getTaskDetail:
+    get:
+      tags: 
+      - task
+      summary: Get the detail information of the task
+      parameters: 
+      - name: task_id
+        in: query
+        description: Id of the task which is queried
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/task'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+        
+  /task/quitTask:
+    get:
+      tags: 
+      - task
+      summary: Quit/Give up task, cookie needed
+      parameters: 
+      - name: task_id
+        in: query
+        required: true
+        description: Id of the task which is to be given up
+        schema:
+          type: string
+      - name: accepter_id
+        in: query
+        required: true
+        description: Id of the user who has accepted the task
+        schema:
+          type: string
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+    
+  /ad/getRecommendAds:
+    get:
+      tags: 
+      - ad
+      summary: Advertisement recommendation
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ads:
+                    type: array
+                    description: List of recommended advertisements
+                    items:
+                      $ref: '#/components/schemas/advertisement'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+  
+  /resources/getSchoolById:
+    get:
+      tags: 
+      - resources
+      summary: Get school name by id
+      parameters:
+      - name: school_id
+        in: query
+        description: Id of school
+        schema:
+          type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  school_name: 
+                    type: string
+                    description: Name of school
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+  
+  /resources/getSchoolList:
+    get:
+      tags: 
+      - resources
+      summary: Get all schools
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  schools: 
+                    type: array
+                    description: School list
+                    items:
+                      $ref: '#/components/schemas/school'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
+  /resources/getCampusById:
+    get:
+      tags: 
+      - resources
+      summary: Get campus name by id
+      parameters:
+      - name: campus_id
+        in: query
+        description: Id of campus
+        schema:
+          type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  campus_name: 
+                    type: string
+                    description: Name of campus
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+  
+  /resources/getCampusList:
+    get:
+      tags: 
+      - resources
+      summary: Get all campuses
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  campuses: 
+                    type: array
+                    description: Campus list
+                    items:
+                      $ref: '#/components/schemas/campus'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
+  /resources/getPreferencesById:
+    get:
+      tags: 
+      - resources
+      summary: Get user preferences by user id
+      parameters:
+      - name: user_id
+        in: query
+        description: Id of user
+        schema:
+          type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tag_ids:
+                    type: array
+                    description: All tag ids
+                    items:
+                      type: integer
+                      description: Tag id
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+  
+  /resources/getTagById:
+    get:
+      tags: 
+      - resources
+      summary: Get tag name by tag id
+      parameters:
+      - name: tag_id
+        in: query
+        description: Id of tag
+        schema:
+          type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tag_name: 
+                    type: string
+                    description: Name of tag
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
+  /resources/getTagList:
+    get:
+      tags: 
+      - resources
+      summary: Get all tags
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tags: 
+                    type: array
+                    description: Tag list
+                    items:
+                      $ref: '#/components/schemas/tag'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
+components:
+  schemas:
+    user:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Id of user
+        nick_name:
+          type: string
+          description: Nick name of user
+        gender:
+          type: string
+          description: Gender of user
+        brithday:
+          type: string
+          description: Birthday of user
+        campus_id:
+          type: integer
+          description: Campus id of user, not the name of campus
+        school_id:
+          type: integer
+          description: School id of user, not the name of school
+        grade:
+          type: string
+          description: Grade of user
+        phone:
+          type: string
+          description: Phone number of user
+        email:
+          type: string
+          description: Email of user
+    questionnaire:
+      type: object
+      description: All content of the questionnaire, in json format
+      properties:
+        quest_des:
+          type: string
+          description: Descripition for the questionnaire
+        statistics:
+          type: object
+          description: Reserved key, don't need to care now.
+        questions:
+          type: array
+          description: All questions
+          items:
+            $ref: '#/components/schemas/question'
+    question:
+      type: object
+      description: Each question
+      properties:
+        quest_type:
+          type: string
+          description: Type of the question
+        quest_title:
+          type: string
+          description: The question
+        quest_option:
+          type: array
+          description: Options of a question
+          items:
+            type: string
+            description: Option
+    dataCollection:
+      type: object
+      description: All content of data collection, in json format
+      properties:
+        data_des:
+          type: string
+          description: Description for the data required
+        submit_way:
+          type: string
+          description: Email only, may change in future.
+    recruitment:
+      type: object
+      description: All content of recruitment
+      properties:
+        recruit_des:
+          type: string
+          description: Description for the recruitment 
+        time:
+          type: string
+          description: Time for the task
+        location:
+          type: string
+          description: Location for the task
+        participant_info:
+          type: object
+          description: Some required information of the participant
+    task:
+      type: object
+      description: Task info
+      properties:
+        id:
+          type: string
+          description: Task id, which is given after publishing, only can be empty before publishing
+        publisher_id:
+          type: string
+          description: User id of the publisher
+        name:
+          type: string
+          description: Task name
+        brief_info:
+          type: string
+          description: Brief information of the task
+        type:
+          type: string
+          description: Task type, questionnaire is "q", data collection is "d", recruitment is "r"
+        contact:
+          type: string
+          description: Contact of the publisher
+        requirements:
+          type: object
+          description: The types of target people, in json format
+        tag_id:
+          type: integer
+          description: The tag id of the task
+        ddl:
+          type: string
+          description: The deadline for the task
+        status:
+          type: string
+          description: The status of the task
+        required_count:
+          type: integer
+          description: Total count of required tasks
+        submited_count:
+          type: integer
+          description: Total count of submited tasks
+        finished_count:
+          type: integer
+          description: Total count of finished tasks
+        reward:
+          type: number
+          description: Reward for finshing the task (one person)
+        content:
+          type: object
+          description: All content for task, in json format (see schema of task for detail)
+          oneOf:
+            - $ref: '#/components/schemas/questionnaire'
+            - $ref: '#/components/schemas/dataCollection'
+            - $ref: '#/components/schemas/recruitment'
+    acceptance:
+      type: object
+      description: Information of the accepter and task
+      properties:
+        id:
+          type: string
+          description: Acceptance id
+        task_id:
+          type: string
+          description: Task id
+        accepter_id:
+          type: string
+          description: Id of user who accepted this task
+        accepter_name:
+          type: string
+          description: Name of user who accepted this task
+        status:
+          type: string
+          description: Status of the task
+        answer:
+          type: string
+          description: Answer of the questionnaire, or required information of the recruitment
+        feedback:
+          type: string
+          description: Feedback of the task by publisher
+    advertisement:
+      type: object
+      description: Advertisement
+      properties:
+        id: 
+          type: string
+          description: Advertisement id
+        link:
+          type: string
+          description: Advertisement link
+        image:
+          type: string
+          description: Image source link of advertisement
+    # preference:
+    #   type: object
+    #   description: Preference
+    #   properties:
+    #     tag_ids:
+    #       type: array
+    #       description: All tag ids
+    #       items:
+    #         type: integer
+    #         description: Tag id
+    #     user_id:
+    #       type: string
+    #       description: User id
+    school:
+      type: object
+      description: School
+      properties:
+        id: 
+          type: integer
+          description: School id
+        name:
+          type: string
+          description: School name
+        type:
+          type: string
+          description: School type
+    campus:
+      type: object
+      description: Campus
+      properties:
+        id: 
+          type: integer
+          description: Campus id
+        name:
+          type: string
+          description: Campus name
+    tag:
+      type: object
+      description: Tag
+      properties:
+        id: 
+          type: integer
+          description: Tag id
+        name:
+          type: string
+          description: Tag name
+  responses:
+    200StatusOK:
+      description: Status OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              msg:
+                type: string
+    400BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              msg:
+                type: string
+                default: 'Bad Request'
+    404NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              msg:
+                type: string
+                default: 'Not Found'
+    500ServerErr:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              msg:
+                type: string
+                default: 'Internal Server Error'
+              
