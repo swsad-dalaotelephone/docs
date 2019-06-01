@@ -55,7 +55,7 @@ paths:
     post:
       tags:
       - user
-      summary: Login account
+      summary: Login account, which will return cookie in header when success
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -127,7 +127,7 @@ paths:
     get:
       tags:
       - user
-      summary: Logout account
+      summary: Logout account, cookie needed
       responses:
         200:
           $ref: '#/components/responses/200StatusOK'
@@ -140,7 +140,7 @@ paths:
     post:
       tags:
       - user
-      summary: Update user profile
+      summary: Update user, cookie needed 
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -149,28 +149,31 @@ paths:
               properties:
                 id:
                   type: string
-                  description: User id, cannot be empty
+                  description: User id, cannot be modified or be empty
                 nick_name:
                   type: string
-                  description: New nick name, or empty
+                  description: New nick name
+                phone:
+                  type: string
+                  description: Phone number, cannot be modified or be empty 
                 gender:
                   type: string
-                  description: New gender, or empty
+                  description: New gender
                 birthday:
                   type: string
-                  description: New birthday, or empty
+                  description: New birthday
                 campus_id:
                   type: integer
-                  description: Id of campus in SYSU, or empty
+                  description: Id of campus in SYSU
                 grade:
                   type: string
-                  description: New grade, or empty
+                  description: New grade
                 school_id:
                   type: integer
-                  description: Id of school, or empty
+                  description: Id of school
                 preferences:
                   type: array
-                  description: The types of the task which the user interest in, or empty.
+                  description: The types of the task which the user interests in
                   items:
                     type: integer
                     description: Id of tag
@@ -188,7 +191,7 @@ paths:
     post:
       tags:
       - user
-      summary: Modify user password
+      summary: Modify user password, cookie needed
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -218,7 +221,7 @@ paths:
     post:
       tags:
       - task
-      summary: Publish task
+      summary: Publish task, cookie needed
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -247,7 +250,7 @@ paths:
     get:
       tags: 
       - task
-      summary: Stop task
+      summary: Stop task, cookie needed
       parameters: 
       - name: task_id
         in: query
@@ -275,7 +278,7 @@ paths:
     post:
       tags: 
       - task
-      summary: Verify tasks
+      summary: Verify tasks, cookie needed
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -314,7 +317,7 @@ paths:
     post:
       tags: 
       - task
-      summary: Update/Modify Task
+      summary: Update/Modify Task, cookie needed
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -334,7 +337,7 @@ paths:
     post:
       tags: 
       - task
-      summary: Submit Task
+      summary: Submit Task, cookie needed
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -364,7 +367,7 @@ paths:
     get:
       tags: 
       - task
-      summary: Get the list of submitted tasks
+      summary: Get the list of submitted tasks' acceptance record
       parameters: 
       - name: task_id
         in: query
@@ -384,10 +387,13 @@ paths:
           content:
             application/json:
               schema:
-                type: array
+                type: object
                 description: List of tasks
-                items:
-                  $ref: '#/components/schemas/task'
+                properties:
+                  submitted:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/acceptance'
         400:
           $ref: '#/components/responses/400BadRequest'
         404:
@@ -399,7 +405,7 @@ paths:
     get:
       tags: 
       - task
-      summary: Accept task
+      summary: Accept task, cookie needed
       parameters: 
       - name: task_id
         in: query
@@ -427,7 +433,7 @@ paths:
     get:
       tags: 
       - task
-      summary: Get the list of undo tasks, which will be recommended to the user
+      summary: Get the list of undo tasks for recommendation
       parameters: 
       - name: user_id
         in: query
@@ -441,10 +447,13 @@ paths:
           content:
             application/json:
               schema:
-                type: array
+                type: object
                 description: List of tasks
-                items:
-                  $ref: '#/components/schemas/task'
+                properties:
+                  tasks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/task'
         400:
           $ref: '#/components/responses/400BadRequest'
         404:
@@ -470,10 +479,13 @@ paths:
           content:
             application/json:
               schema:
-                type: array
+                type: object
                 description: List of tasks
-                items:
-                  $ref: '#/components/schemas/task'
+                properties:
+                  tasks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/task'
         400:
           $ref: '#/components/responses/400BadRequest'
         404:
@@ -499,10 +511,13 @@ paths:
           content:
             application/json:
               schema:
-                type: array
+                type: object
                 description: List of tasks
-                items:
-                  $ref: '#/components/schemas/task'
+                properties:
+                  tasks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/task'
         400:
           $ref: '#/components/responses/400BadRequest'
         404:
@@ -539,7 +554,7 @@ paths:
     get:
       tags: 
       - task
-      summary: Quit/Give up task
+      summary: Quit/Give up task, cookie needed
       parameters: 
       - name: task_id
         in: query
@@ -889,7 +904,7 @@ components:
           description: Brief information of the task
         type:
           type: string
-          description: Task type, questionnaire, data collection, recruit
+          description: Task type, questionnaire is "q", data collection is "d", recruitment is "r"
         contact:
           type: string
           description: Contact of the publisher
@@ -902,6 +917,9 @@ components:
         ddl:
           type: string
           description: The deadline for the task
+        status:
+          type: string
+          description: The status of the task
         required_count:
           type: integer
           description: Total count of required tasks
@@ -921,6 +939,31 @@ components:
             - $ref: '#/components/schemas/questionnaire'
             - $ref: '#/components/schemas/dataCollection'
             - $ref: '#/components/schemas/recruitment'
+    acceptance:
+      type: object
+      description: Information of the accepter and task
+      properties:
+        id:
+          type: string
+          description: Acceptance id
+        task_id:
+          type: string
+          description: Task id
+        accepter_id:
+          type: string
+          description: Id of user who accepted this task
+        accepter_name:
+          type: string
+          description: Name of user who accepted this task
+        status:
+          type: string
+          description: Status of the task
+        answer:
+          type: string
+          description: Answer of the questionnaire, or required information of the recruitment
+        feedback:
+          type: string
+          description: Feedback of the task by publisher
     advertisement:
       type: object
       description: Advertisement
