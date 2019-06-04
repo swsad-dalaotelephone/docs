@@ -367,7 +367,7 @@ paths:
     get:
       tags: 
       - task
-      summary: Get the list of submitted tasks' acceptance record
+      summary: Get the list of submitted tasks' acceptance record, cookie needed
       parameters: 
       - name: task_id
         in: query
@@ -465,7 +465,7 @@ paths:
     get:
       tags: 
       - task
-      summary: Get the list of published tasks
+      summary: Get the list of published tasks, cookie needed
       parameters: 
       - name: publisher_id
         in: query
@@ -497,7 +497,7 @@ paths:
     get:
       tags: 
       - task
-      summary: Get the list of accepted tasks
+      summary: Get the list of accepted tasks, cookie needed
       parameters: 
       - name: accepter_id
         in: query
@@ -571,6 +571,83 @@ paths:
       responses:
         200:
           $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+    
+  /task/getStatistics:
+    get:
+      tags:
+      - task
+      summary: Get the statistics of questionnaire, cookie needed
+      parameters:
+      - name: task_id
+        in: query
+        required: true
+        description: Task id of the questionnaire
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statistics:
+                    type: array
+                    description: Statistics of multiple choice questions
+                    items:
+                      type: object
+                      description: All the multiple choice questions
+                      properties:
+                        option_count:
+                          type: array
+                          description: Statistics of each option of the question
+                          items:
+                            type: integer
+                        option_name:
+                          type: array
+                          description: The specific name of each option
+                          items:
+                            type: string
+                        question:
+                          type: string
+                          description: The content of the multiple choice questions
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
+  /task/downloadStatistics:
+    get:
+      tags:
+      - task
+      summary: Get the download link of the statistics
+      parameters:
+      - name: task_id
+        in: query
+        required: true
+        description: Task id
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  link:
+                    type: string
+                    description: The download link of the statistics
         400:
           $ref: '#/components/responses/400BadRequest'
         404:
@@ -836,9 +913,6 @@ components:
         quest_des:
           type: string
           description: Descripition for the questionnaire
-        statistics:
-          type: object
-          description: Reserved key, don't need to care now.
         questions:
           type: array
           description: All questions
@@ -877,9 +951,12 @@ components:
         recruit_des:
           type: string
           description: Description for the recruitment 
-        time:
+        start_time:
           type: string
-          description: Time for the task
+          description: Start time for the task
+        end_time:
+          type: string
+          description: End time for the task
         location:
           type: string
           description: Location for the task
@@ -934,7 +1011,7 @@ components:
           description: Reward for finshing the task (one person)
         content:
           type: object
-          description: All content for task, in json format (see schema of task for detail)
+          description: All content for task, in json format (see schema of task for detail), only used in /task/publishTask api and /task/getTaskDetail api
           oneOf:
             - $ref: '#/components/schemas/questionnaire'
             - $ref: '#/components/schemas/dataCollection'
