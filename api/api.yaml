@@ -514,10 +514,10 @@ paths:
                 type: object
                 description: List of tasks
                 properties:
-                  tasks:
+                  accepted:
                     type: array
                     items:
-                      $ref: '#/components/schemas/task'
+                      $ref: '#/components/schemas/acceptance'
         400:
           $ref: '#/components/responses/400BadRequest'
         404:
@@ -1036,8 +1036,25 @@ components:
           type: string
           description: Status of the task
         answer:
-          type: string
-          description: Answer of the questionnaire, or required information of the recruitment
+          type: object
+          description: Answers of the questionnaire, or required information of the recruitment, in json format
+          properties:
+            answer:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    description: Question type, "m" for multiple-choice question, "f" for the filling-blank question
+                  option:
+                    type: array
+                    description: The option index
+                    items:
+                      type: integer
+                  text:
+                    type: string
+                    description: Answer for the filling-blank question
         feedback:
           type: string
           description: Feedback of the task by publisher

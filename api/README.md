@@ -36,4 +36,4 @@
 | v2.7 | 2019-06-01 | 重写获取已提交任务api，task增加status | gitgiter |
 | v2.8 | 2019-06-03 | 统计结果查询、下载api，细节完善 | gitgiter |
 | v2.9 | 2019-06-03 | 删除问卷的statistic字段，拆分招募的time | gitgiter |
-
+| v3.0 | 2019-06-04 | 重写获取已接受任务api，约束answer格式 | gitgiter |
