@@ -951,9 +951,12 @@ components:
         recruit_des:
           type: string
           description: Description for the recruitment 
-        time:
+        start_time:
           type: string
-          description: Time for the task
+          description: Start time for the task
+        end_time:
+          type: string
+          description: End time for the task
         location:
           type: string
           description: Location for the task

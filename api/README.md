@@ -35,4 +35,5 @@
 | v2.6 | 2019-05-28 | 修改ad返回格式，完善resources列表类api | gitgiter |
 | v2.7 | 2019-06-01 | 重写获取已提交任务api，task增加status | gitgiter |
 | v2.8 | 2019-06-03 | 统计结果查询、下载api，细节完善 | gitgiter |
+| v2.9 | 2019-06-03 | 删除问卷的statistic字段，拆分招募的time | gitgiter |
 
