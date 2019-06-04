@@ -143,7 +143,7 @@ paths:
       summary: Update user, cookie needed 
       requestBody:
         content:
-          application/x-www-form-urlencoded:
+          application/json:
             schema:
               type: object
               properties:
@@ -157,8 +157,8 @@ paths:
                   type: string
                   description: Phone number, cannot be modified or be empty 
                 gender:
-                  type: string
-                  description: New gender
+                  type: integer
+                  description: New gender, 0 for unknow, 1 for male, 2 for female
                 birthday:
                   type: string
                   description: New birthday
@@ -224,7 +224,7 @@ paths:
       summary: Publish task, cookie needed
       requestBody:
         content:
-          application/x-www-form-urlencoded:
+          application/json:
             schema:
               $ref: '#/components/schemas/task'
       responses:
@@ -320,7 +320,7 @@ paths:
       summary: Update/Modify Task, cookie needed
       requestBody:
         content:
-          application/x-www-form-urlencoded:
+          application/json:
             schema:
               $ref: '#/components/schemas/task'
       responses:
