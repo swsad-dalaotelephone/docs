@@ -534,7 +534,7 @@ paths:
     get:
       tags: 
       - task
-      summary: Get the detail information of the task
+      summary: Get the detail information of the task, if has cookie, also return acceptance
       parameters: 
       - name: task_id
         in: query
@@ -547,7 +547,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/task'
+                type: object
+                properties:
+                  task:
+                    $ref: '#/components/schemas/task'
+                  acceptance:
+                    $ref: '#/components/schemas/acceptance'
         400:
           $ref: '#/components/responses/400BadRequest'
         404:
