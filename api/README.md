@@ -38,3 +38,4 @@
 | v2.9 | 2019-06-03 | 删除问卷的statistic字段，拆分招募的time | gitgiter |
 | v3.0 | 2019-06-04 | 重写获取已接受任务api，约束answer格式 | gitgiter |
 | v3.1 | 2019-06-04 | 修改gender字段类型，长表单改json | gitgiter |
+| v3.2 | 2019-06-06 | status字段类型更正，获取接受任务api更正 | gitgiter |

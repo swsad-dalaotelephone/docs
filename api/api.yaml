@@ -517,7 +517,12 @@ paths:
                   accepted:
                     type: array
                     items:
-                      $ref: '#/components/schemas/acceptance'
+                      type: object
+                      properties:
+                        acceptance:
+                          $ref: '#/components/schemas/acceptance'
+                        task:
+                          $ref: '#/components/schemas/task'
         400:
           $ref: '#/components/responses/400BadRequest'
         404:
@@ -995,7 +1000,7 @@ components:
           type: string
           description: The deadline for the task
         status:
-          type: string
+          type: integer
           description: The status of the task
         required_count:
           type: integer
@@ -1033,7 +1038,7 @@ components:
           type: string
           description: Name of user who accepted this task
         status:
-          type: string
+          type: integer
           description: Status of the task
         answer:
           type: object
