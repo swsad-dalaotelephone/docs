@@ -18,16 +18,16 @@ servers:
 - url: http://127.0.0.1:8080
 
 paths:
-  /user/loginWeApp:
+  /user/weApp:
     get:
       tags: 
       - user
-      summary: Login weApp
+      summary: Login weApp, get the openId
       parameters:
       - name: code
         in: query
-        required: true
         description: The code for getting openid and session key.
+        required: true
         schema:
           type: string
       responses:
@@ -51,41 +51,11 @@ paths:
         500:
           $ref: '#/components/responses/500ServerErr'
           
-  /user/login:
+  /user:
     post:
       tags:
       - user
-      summary: Login account, which will return cookie in header when success
-      requestBody:
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              properties:
-                phone:
-                  type: string
-                  description: Phone number
-                password:
-                  type: string
-                  description: Password
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  msg:
-                    type: string
-        404:
-          $ref: '#/components/responses/404NotFound'
-      
-  /user/register:
-    post:
-      tags:
-      - user
-      summary: Register account
+      summary: Register account, create a new user
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -123,11 +93,39 @@ paths:
         500:
           $ref: '#/components/responses/500ServerErr'
       
-  /user/logout:
-    get:
+  /user/session:
+    post:
       tags:
       - user
-      summary: Logout account, cookie needed
+      summary: Login account, which will return cookie in header when success
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                phone:
+                  type: string
+                  description: Phone number
+                password:
+                  type: string
+                  description: Password
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+        404:
+          $ref: '#/components/responses/404NotFound'
+    delete:
+      tags:
+      - user
+      summary: Logout account and delete session, cookie needed
       responses:
         200:
           $ref: '#/components/responses/200StatusOK'
@@ -136,11 +134,28 @@ paths:
         404:
           $ref: '#/components/responses/404NotFound'
           
-  /user/updateProfile:
-    post:
+  /user/profile:
+    get:
       tags:
       - user
-      summary: Update user, cookie needed 
+      summary: Get user profile, cookie needed
+      responses:
+        200:
+          description: OK
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+    put:
+      tags:
+      - user
+      summary: Update user profile, cookie needed 
       requestBody:
         content:
           application/json:
@@ -187,8 +202,8 @@ paths:
         500:
           $ref: '#/components/responses/500ServerErr'
                   
-  /user/modifyPassword:
-    post:
+  /user/password:
+    patch:
       tags:
       - user
       summary: Modify user password, cookie needed
@@ -198,9 +213,6 @@ paths:
             schema:
               type: object
               properties:
-                id:
-                  type: string
-                  description: User id
                 old_pass:
                   type: string
                   description: The old password
@@ -217,11 +229,37 @@ paths:
         500:
           $ref: '#/components/responses/500ServerErr'
   
-  /task/publishTask:
+  /user/preferences:
+    get:
+      tags: 
+      - user
+      summary: Get user preferences, cookie needed
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tag_ids:
+                    type: array
+                    description: All tag ids
+                    items:
+                      type: integer
+                      description: Tag id
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+  
+  /task:
     post:
       tags:
       - task
-      summary: Publish task, cookie needed
+      summary: Publish task, create a new task, cookie needed
       requestBody:
         content:
           application/json:
@@ -245,79 +283,10 @@ paths:
           $ref: '#/components/responses/404NotFound'
         500:
           $ref: '#/components/responses/500ServerErr'
-  
-  /task/stopTask:
-    get:
+    put:
       tags: 
       - task
-      summary: Stop task, cookie needed
-      parameters: 
-      - name: task_id
-        in: query
-        required: true
-        description: Id of the task which is to be stopped
-        schema:
-          type: string
-      - name: publisher_id
-        in: query
-        required: true
-        description: Id of the user who has published the task
-        schema:
-          type: string
-      responses:
-        200:
-          $ref: '#/components/responses/200StatusOK'
-        400:
-          $ref: '#/components/responses/400BadRequest'
-        404:
-          $ref: '#/components/responses/404NotFound'
-        500:
-          $ref: '#/components/responses/500ServerErr'
-  
-  /task/verifyTask:
-    post:
-      tags: 
-      - task
-      summary: Verify tasks, cookie needed
-      requestBody:
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              properties:
-                task_id:
-                  type: string
-                  description: Id of the task which is to be verify
-                publisher_id:
-                  type: string
-                  description: Id of the user who has published the task
-                accepter_id:
-                  type: array
-                  description: Id of the user(s) who has/have accepted and completed the task
-                  items:
-                    type: string
-                    description: User id
-                result:
-                  type: boolean
-                  description: True for confirm, false for reject
-                feedback:
-                  type: string
-                  description: Feedback for result
-      responses:
-        200:
-          $ref: '#/components/responses/200StatusOK'
-        400:
-          $ref: '#/components/responses/400BadRequest'
-        404:
-          $ref: '#/components/responses/404NotFound'
-        500:
-          $ref: '#/components/responses/500ServerErr'
-  
-  /task/updateTask:
-    post:
-      tags: 
-      - task
-      summary: Update/Modify Task, cookie needed
+      summary: Update Task, update an exited task, cookie needed
       requestBody:
         content:
           application/json:
@@ -332,104 +301,8 @@ paths:
           $ref: '#/components/responses/404NotFound'
         500:
           $ref: '#/components/responses/500ServerErr'
-      
-  /task/submitTask:
-    post:
-      tags: 
-      - task
-      summary: Submit Task, cookie needed
-      requestBody:
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              properties:
-                task_id:
-                  type: string
-                  description: Task id
-                accepter_id:
-                  type: string
-                  description: Id of user who has accepted the task
-                answer:
-                  type: object
-                  description: Answer for questionnaire or information for recruitment, in json format
-      responses:
-        200:
-          $ref: '#/components/responses/200StatusOK'
-        400:
-          $ref: '#/components/responses/400BadRequest'
-        404:
-          $ref: '#/components/responses/404NotFound'
-        500:
-          $ref: '#/components/responses/500ServerErr'
   
-  /task/getSubmittedTasks:
-    get:
-      tags: 
-      - task
-      summary: Get the list of submitted tasks' acceptance record, cookie needed
-      parameters: 
-      - name: task_id
-        in: query
-        required: true
-        description: Id of the task
-        schema:
-          type: string
-      - name: publisher_id
-        in: query
-        required: true
-        description: Id of the publisher
-        schema:
-          type: string
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                description: List of tasks
-                properties:
-                  submitted:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/acceptance'
-        400:
-          $ref: '#/components/responses/400BadRequest'
-        404:
-          $ref: '#/components/responses/404NotFound'
-        500:
-          $ref: '#/components/responses/500ServerErr'
-          
-  /task/acceptTask:
-    get:
-      tags: 
-      - task
-      summary: Accept task, cookie needed
-      parameters: 
-      - name: task_id
-        in: query
-        required: true
-        description: Id of the task which is chosen
-        schema:
-          type: string
-      - name: accepter_id
-        in: query
-        required: true
-        description: Id of the user who try to accept the task
-        schema:
-          type: string
-      responses:
-        200:
-          $ref: '#/components/responses/200StatusOK'
-        400:
-          $ref: '#/components/responses/400BadRequest'
-        404:
-          $ref: '#/components/responses/404NotFound'
-        500:
-          $ref: '#/components/responses/500ServerErr'
-          
-  /task/getRecommendTasks:
+  /task/recommendedTasks:
     get:
       tags: 
       - task
@@ -438,7 +311,7 @@ paths:
       - name: user_id
         in: query
         required: false
-        description: Id of the user, can be empty?
+        description: Id of the user, can be empty
         schema:
           type: string
       responses:
@@ -461,18 +334,11 @@ paths:
         500:
           $ref: '#/components/responses/500ServerErr'
   
-  /task/getPublishedTasks:
+  /task/publishedTasks:
     get:
       tags: 
       - task
       summary: Get the list of published tasks, cookie needed
-      parameters: 
-      - name: publisher_id
-        in: query
-        required: true
-        description: Id of the publisher
-        schema:
-          type: string
       responses:
         200:
           description: OK
@@ -493,18 +359,11 @@ paths:
         500:
           $ref: '#/components/responses/500ServerErr'
           
-  /task/getAcceptedTasks:
+  /task/acceptedTasks:
     get:
       tags: 
       - task
       summary: Get the list of accepted tasks, cookie needed
-      parameters: 
-      - name: accepter_id
-        in: query
-        required: true
-        description: Id of the accepter
-        schema:
-          type: string
       responses:
         200:
           description: OK
@@ -529,16 +388,17 @@ paths:
           $ref: '#/components/responses/404NotFound'
         500:
           $ref: '#/components/responses/500ServerErr'
-          
-  /task/getTaskDetail:
+  
+  /task/{task_id}:
     get:
       tags: 
       - task
-      summary: Get the detail information of the task, if has cookie, also return acceptance
+      summary: Get the detail information of the task, if has cookie, will also return the acceptance
       parameters: 
       - name: task_id
-        in: query
+        in: path
         description: Id of the task which is queried
+        required: true
         schema:
           type: string
       responses:
@@ -559,23 +419,49 @@ paths:
           $ref: '#/components/responses/404NotFound'
         500:
           $ref: '#/components/responses/500ServerErr'
-        
-  /task/quitTask:
+          
+  /task/{task_id}/submittedTasks:
     get:
       tags: 
       - task
-      summary: Quit/Give up task, cookie needed
+      summary: Get the list of submitted tasks' acceptance record, cookie needed
       parameters: 
       - name: task_id
-        in: query
+        in: path
         required: true
-        description: Id of the task which is to be given up
+        description: Id of the task
         schema:
           type: string
-      - name: accepter_id
-        in: query
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                description: List of tasks
+                properties:
+                  submitted:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/acceptance'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
+  /task/{task_id}/status:
+    patch:
+      tags: 
+      - task
+      summary: Update task status, only allowing to change the task status to stop task, cookie needed
+      parameters: 
+      - name: task_id
+        in: path
         required: true
-        description: Id of the user who has accepted the task
+        description: Id of the task which is to be stopped
         schema:
           type: string
       responses:
@@ -587,15 +473,15 @@ paths:
           $ref: '#/components/responses/404NotFound'
         500:
           $ref: '#/components/responses/500ServerErr'
-    
-  /task/getStatistics:
+          
+  /task/{task_id}/statistic:
     get:
       tags:
       - task
       summary: Get the statistics of questionnaire, cookie needed
       parameters:
       - name: task_id
-        in: query
+        in: path
         required: true
         description: Task id of the questionnaire
         schema:
@@ -635,14 +521,14 @@ paths:
         500:
           $ref: '#/components/responses/500ServerErr'
           
-  /task/downloadStatistics:
+  /task/{task_id}/statistic/downloadLink:
     get:
       tags:
       - task
       summary: Get the download link of the statistics
       parameters:
       - name: task_id
-        in: query
+        in: path
         required: true
         description: Task id
         schema:
@@ -664,8 +550,118 @@ paths:
           $ref: '#/components/responses/404NotFound'
         500:
           $ref: '#/components/responses/500ServerErr'
+        
+  /task/{task_id}/acceptance:
+    post:
+      tags: 
+      - task
+      summary: Accept task, create an acceptance, cookie needed
+      parameters: 
+      - name: task_id
+        in: path
+        required: true
+        description: Id of the task which is chosen
+        schema:
+          type: string
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+    delete:
+      tags: 
+      - task
+      summary: Quit/Give up task, delete the acceptance, cookie needed
+      parameters: 
+      - name: task_id
+        in: path
+        required: true
+        description: Id of the task which is to be given up
+        schema:
+          type: string
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+  
+  /task/{task_id}/acceptance/result:
+    patch:
+      tags: 
+      - task
+      summary: Verify tasks, cookie needed
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Id of the task which is to be verified
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                accepter_id:
+                  type: string
+                  description: Id of the user who has accepted and completed the task
+                result:
+                  type: boolean
+                  description: True for confirm, false for reject
+                feedback:
+                  type: string
+                  description: Feedback for result
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+      
+  /task/{task_id}/acceptance/answer:
+    patch:
+      tags: 
+      - task
+      summary: Submit answer, cookie needed
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Id of the task which is to be submitted
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                answer:
+                  type: object
+                  description: Answer for questionnaire or information for recruitment, in json format
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
     
-  /ad/getRecommendAds:
+  /ad/recommendedAds:
     get:
       tags: 
       - ad
@@ -690,15 +686,16 @@ paths:
         500:
           $ref: '#/components/responses/500ServerErr'
   
-  /resources/getSchoolById:
+  /resource/school/{school_id}:
     get:
       tags: 
       - resources
       summary: Get school name by id
       parameters:
       - name: school_id
-        in: query
+        in: path
         description: Id of school
+        required: true
         schema:
           type: integer
       responses:
@@ -719,7 +716,7 @@ paths:
         500:
           $ref: '#/components/responses/500ServerErr'
   
-  /resources/getSchoolList:
+  /resource/schools:
     get:
       tags: 
       - resources
@@ -744,15 +741,16 @@ paths:
         500:
           $ref: '#/components/responses/500ServerErr'
           
-  /resources/getCampusById:
+  /resource/campus/{campus_id}:
     get:
       tags: 
       - resources
       summary: Get campus name by id
       parameters:
       - name: campus_id
-        in: query
+        in: path
         description: Id of campus
+        required: true
         schema:
           type: integer
       responses:
@@ -773,7 +771,7 @@ paths:
         500:
           $ref: '#/components/responses/500ServerErr'
   
-  /resources/getCampusList:
+  /resource/campuses:
     get:
       tags: 
       - resources
@@ -797,48 +795,17 @@ paths:
           $ref: '#/components/responses/404NotFound'
         500:
           $ref: '#/components/responses/500ServerErr'
-          
-  /resources/getPreferencesById:
-    get:
-      tags: 
-      - resources
-      summary: Get user preferences by user id
-      parameters:
-      - name: user_id
-        in: query
-        description: Id of user
-        schema:
-          type: integer
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  tag_ids:
-                    type: array
-                    description: All tag ids
-                    items:
-                      type: integer
-                      description: Tag id
-        400:
-          $ref: '#/components/responses/400BadRequest'
-        404:
-          $ref: '#/components/responses/404NotFound'
-        500:
-          $ref: '#/components/responses/500ServerErr'
   
-  /resources/getTagById:
+  /resource/tag/{tag_id}:
     get:
       tags: 
       - resources
       summary: Get tag name by tag id
       parameters:
       - name: tag_id
-        in: query
+        in: path
         description: Id of tag
+        required: true
         schema:
           type: integer
       responses:
@@ -859,7 +826,7 @@ paths:
         500:
           $ref: '#/components/responses/500ServerErr'
           
-  /resources/getTagList:
+  /resource/tags:
     get:
       tags: 
       - resources

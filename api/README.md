@@ -40,3 +40,4 @@
 | v3.1 | 2019-06-04 | 修改gender字段类型，长表单改json | gitgiter |
 | v3.2 | 2019-06-06 | status字段类型更正，获取接受任务api更正 | gitgiter |
 | v3.3 | 2019-06-06 | 获取任务详情api加入acceptance，注释细节完善 | gitgiter |
+| v4.0 | 2019-06-06 | 全面整改api风格，去除冗余user_id，细节完善 | gitgiter |
