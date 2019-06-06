@@ -156,6 +156,7 @@ paths:
       tags:
       - user
       summary: Update user profile, cookie needed 
+  
       requestBody:
         content:
           application/json:
@@ -254,7 +255,119 @@ paths:
           $ref: '#/components/responses/404NotFound'
         500:
           $ref: '#/components/responses/500ServerErr'
+    put:
+      tags:
+      - user
+      summary: Update user preferences, cookie needed
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                tag_ids:
+                    type: array
+                    description: All tag ids
+                    items:
+                      type: integer
+                      description: Tag id
+      responses:
+        200:
+          $ref: '#/components/responses/200StatusOK'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
   
+  /user/recommendedTasks:
+    get:
+      tags: 
+      - user
+      summary: Get the list of undo tasks for recommendation
+      parameters: 
+      - name: user_id
+        in: query
+        required: false
+        description: Id of the user, can be empty
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                description: List of tasks
+                properties:
+                  tasks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/task'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+  
+  /user/publishedTasks:
+    get:
+      tags: 
+      - user
+      summary: Get the list of published tasks, cookie needed
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                description: List of tasks
+                properties:
+                  tasks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/task'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
+  /user/acceptedTasks:
+    get:
+      tags: 
+      - user
+      summary: Get the list of accepted tasks, cookie needed
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                description: List of tasks
+                properties:
+                  accepted:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        acceptance:
+                          $ref: '#/components/schemas/acceptance'
+                        task:
+                          $ref: '#/components/schemas/task'
+        400:
+          $ref: '#/components/responses/400BadRequest'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/500ServerErr'
+          
   /task:
     post:
       tags:
@@ -295,93 +408,6 @@ paths:
       responses:
         200:
           $ref: '#/components/responses/200StatusOK'
-        400:
-          $ref: '#/components/responses/400BadRequest'
-        404:
-          $ref: '#/components/responses/404NotFound'
-        500:
-          $ref: '#/components/responses/500ServerErr'
-  
-  /task/recommendedTasks:
-    get:
-      tags: 
-      - task
-      summary: Get the list of undo tasks for recommendation
-      parameters: 
-      - name: user_id
-        in: query
-        required: false
-        description: Id of the user, can be empty
-        schema:
-          type: string
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                description: List of tasks
-                properties:
-                  tasks:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/task'
-        400:
-          $ref: '#/components/responses/400BadRequest'
-        404:
-          $ref: '#/components/responses/404NotFound'
-        500:
-          $ref: '#/components/responses/500ServerErr'
-  
-  /task/publishedTasks:
-    get:
-      tags: 
-      - task
-      summary: Get the list of published tasks, cookie needed
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                description: List of tasks
-                properties:
-                  tasks:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/task'
-        400:
-          $ref: '#/components/responses/400BadRequest'
-        404:
-          $ref: '#/components/responses/404NotFound'
-        500:
-          $ref: '#/components/responses/500ServerErr'
-          
-  /task/acceptedTasks:
-    get:
-      tags: 
-      - task
-      summary: Get the list of accepted tasks, cookie needed
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                description: List of tasks
-                properties:
-                  accepted:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        acceptance:
-                          $ref: '#/components/schemas/acceptance'
-                        task:
-                          $ref: '#/components/schemas/task'
         400:
           $ref: '#/components/responses/400BadRequest'
         404:
