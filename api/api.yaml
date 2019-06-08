@@ -999,7 +999,7 @@ components:
           description: The deadline for the task
         status:
           type: integer
-          description: The status of the task
+          description: The status of the task, 0 for "running", 1 for "end", 2 for "stop"
         required_count:
           type: integer
           description: Total count of required tasks
@@ -1037,7 +1037,7 @@ components:
           description: Name of user who accepted this task
         status:
           type: integer
-          description: Status of the task
+          description: Status of the acceptance, 0 for "unsubmmited", 1 for "waitConfirm", 2 for "unqualified", 3 for "finished"
         answer:
           type: object
           description: Answers of the questionnaire, or required information of the recruitment, in json format
