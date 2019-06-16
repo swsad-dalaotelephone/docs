@@ -1,6 +1,7 @@
 | 版本 |   日期    | 描述 |  作者   |
 | :--: | :-------: | :--: | :-----: |
 | v1.0 | 2019-06-16 | 完成文档编写 | gitgiter |
+| v1.1 | 2019-06-16 | 修改小程序、后端项目结构 | gitgiter |
 
 ## 逻辑架构到应用程序映射指南(BCE)
 
@@ -22,141 +23,23 @@ Redis 提供了会话、缓存的持久化服务。
 #### 2.1 小程序
 ```
 miniProgram
-├─components
-│  ├─my-card
-│  ├─my-datetimepicker
-│  └─my-picker
-├─dist
-│  ├─action-sheet
-│  ├─alert
-│  ├─avatar
-│  ├─badge
-│  ├─base
-│  ├─button
-│  ├─card
-│  ├─cell
-│  ├─cell-group
-│  ├─checkbox
-│  ├─checkbox-group
-│  ├─col
-│  ├─collapse
-│  ├─collapse-item
-│  ├─count-down
-│  ├─divider
-│  ├─drawer
-│  ├─grid
-│  ├─grid-icon
-│  ├─grid-item
-│  ├─grid-label
-│  ├─icon
-│  ├─index
-│  ├─index-item
-│  ├─input
-│  ├─input-number
-│  ├─load-more
-│  ├─message
-│  ├─modal
-│  ├─notice-bar
-│  ├─page
-│  ├─panel
-│  ├─progress
-│  ├─radio
-│  ├─radio-group
-│  ├─rate
-│  ├─row
-│  ├─slide
-│  ├─spin
-│  ├─step
-│  ├─steps
-│  ├─sticky
-│  ├─sticky-item
-│  ├─swipeout
-│  ├─switch
-│  ├─tab
-│  ├─tab-bar
-│  ├─tab-bar-item
-│  ├─tabs
-│  ├─tag
-│  └─toast
+├─components        # 自定义组件
+│  └─my-card
+├─dist              # ivew UI组件库
 ├─images
-├─miniprogram_npm
-│  └─vant-weapp
-│      ├─action-sheet
-│      ├─area
-│      ├─badge
-│      ├─badge-group
-│      ├─button
-│      ├─card
-│      ├─cell
-│      ├─cell-group
-│      ├─checkbox
-│      ├─checkbox-group
-│      ├─col
-│      ├─collapse
-│      ├─collapse-item
-│      ├─common
-│      │  └─style
-│      │      └─mixins
-│      ├─datetime-picker
-│      ├─dialog
-│      ├─field
-│      ├─goods-action
-│      ├─goods-action-button
-│      ├─goods-action-icon
-│      ├─icon
-│      ├─info
-│      ├─loading
-│      ├─mixins
-│      │  └─observer
-│      ├─nav-bar
-│      ├─notice-bar
-│      ├─notify
-│      ├─overlay
-│      ├─panel
-│      ├─picker
-│      ├─picker-column
-│      ├─popup
-│      ├─progress
-│      ├─radio
-│      ├─radio-group
-│      ├─rate
-│      ├─row
-│      ├─search
-│      ├─slider
-│      ├─stepper
-│      ├─steps
-│      ├─submit-bar
-│      ├─swipe-cell
-│      ├─switch
-│      ├─switch-cell
-│      ├─tab
-│      ├─tabbar
-│      ├─tabbar-item
-│      ├─tabs
-│      ├─tag
-│      ├─toast
-│      ├─transition
-│      ├─tree-select
-│      └─wxs
-├─pages
-│  ├─editprofile
-│  ├─fulfiltask
+├─libs
+├─miniprogram_npm   # npm 第三方包
+│  └─vant-weapp     # vant UI组件库
+├─pages             # 页面文件
 │  ├─index
 │  ├─login
 │  ├─logs
 │  ├─mine
-│  ├─newcollect
-│  ├─newquestionnaire
-│  ├─newrecruit
-│  ├─newtaskgeneral
-│  ├─receive
+│  ├─newtask
 │  ├─register
-│  ├─review
-│  ├─scope
-│  ├─task
-│  └─taskcomplete
-├─style
-└─utils
+│  └─task
+├─style             # weui官方样式库
+└─utils             # 工具函数
 ```
 
 #### 2.2 后端
@@ -170,7 +53,7 @@ Server
 │  └─user
 ├─database          # 数据库初始化
 ├─middlewares       # 中间件
-│  ├─auth
+│  ├─auth           # 鉴权
 │  ├─cache
 │  ├─logger
 │  └─session
