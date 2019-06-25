@@ -43,3 +43,15 @@
 | v4.0 | 2019-06-06 | 全面整改api风格，去除冗余user_id，细节完善 | gitgiter |
 | v4.1 | 2019-06-07 | 增加获取用户信息api、preference修改api，去掉用户信息修改中的preference，将获取推荐、已发布、已接受任务归入user | gitgiter |
 | v4.2 | 2019-06-08 | 增加status说明 | gitgiter |
+
+### 备注
+
+1. 由于微信小程序不支持 patch 方法，api中的 patch 方法在实现的时候均视为 put。
+
+2. 请求的时候注意 content type 的要求，表单要以 application/x-www-form-urlencoded 的格式，application/json 表示以 json 格式传递数据。
+
+3. 某些字段如有注明 in json format，则该字段也要以 json 格式传递，如 acceptance 的 answer 字段。
+
+4. 数据模型的基本格式及其字段含义，可以在 api 文档最下面的 schemas 部分中对应查看。
+
+5. 注明有 cookie needed 的 api 表示需要鉴权，请求的时候需要带上登录时返回的 cookie。
