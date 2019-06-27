@@ -15,21 +15,27 @@
     - 7.1 [UI design](https://org.modao.cc/app/f0ebac717798611817ec540d3532bab4#screen=sB92589E8A31557559884765)（界面设计）
     - 7.2 [Database design](imgs/db_design.png)（数据库设计）
     - 7.3 [Interface API design](api/README.md)（接口 API 设计）
-    - 7.4 [Architecture design](SAD/SAD.md)（架构设计）
+    - 7.4 Architecture design（架构设计）
     - 7.5 Usecase design（用例设计）
 - 8- 、生产规范与指南
     - 8.1 代码规范
-      - [后端golang代码规范](后端代码规范.md#go语言编写规范)
-      - [后端数据库规范](后端代码规范.md#数据库规范)
+      - [后端golang代码规范](后端代码规范.md###go语言编写规范)
+      - [后端数据库规范](后端代码规范.md###数据库规范)
       - [前端代码规范](前端代码规范.md)
-    - 8.2 [REST API 设计规范](后端代码规范.md#接口规范)
-    - 8.3 [详细设计（BCE方法）到应用程序框架映射指南](BCE.md)
-    - 8.4 [部署说明](https://swsad-dalaotelephone.github.io/SE-308/%E5%AE%89%E8%A3%85%E5%8C%85%E4%B8%8E%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2%E8%AF%B4%E6%98%8E.html)
+    - 8.2 [REST API 设计规范](后端代码规范.md###接口规范)
+    - 8.3 [架构设计、详细设计（BCE方法）到应用程序框架映射指南](BCE.md)
+    - 8.4 部署说明
 - 9、成品展示
     - 9.1 XX短视频
     - 9.2 XX短视频
 - X1 meeting-records
     - [inception meeting](./meeting-record/inception-meeting) (2019/03/23)
+    - [warmup-meeting](./meeting-record/warmup-meeting) (2019/03/31)
+    - [iteration1-meeting1](./meeting-record/iteration1-meeting1) (2019/04/07)
+    - [iteration1-meeting2](./meeting-record/iteration1-meeting2) (2019/04/20)
+    - [iteration2-meeting1](./meeting-record/iteration2-meeting1) (2019/05/12)
+    - [iteration2-meeting2](./meeting-record/iteration2-meeting2) (2019/06/02)
+    - [deployment-meeting](./meeting-record/deployment-meeting) (2019/06/16)
 - X2 KANBAN
 - X3 auditing-records
 - X4 Tech/Work Report
