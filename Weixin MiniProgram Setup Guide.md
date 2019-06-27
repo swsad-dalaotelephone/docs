@@ -11,11 +11,12 @@
 下载稳定版即可，不建议使用不稳定的开发版。
 
 2. 下载完成后，直接打开安装，静待安装完成。
-
+<img src="https://raw.githubusercontent.com/swsad-dalaotelephone/docs/gh-pages/imgs/wx_dev_tool_setup.png" width = 30% height = 30% />
 ![安装wx_dev_tools过程](https://raw.githubusercontent.com/swsad-dalaotelephone/docs/gh-pages/imgs/wx_dev_tool_setup.png)
 
 3. 安装完成后，打开微信web开发者工具，然后用自己的微信扫码登录。
-   
+
+<img src="https://raw.githubusercontent.com/swsad-dalaotelephone/docs/gh-pages/imgs/wx_dev_tool_login.png" width = 30% height = 30% />   
 ![登录页](https://raw.githubusercontent.com/swsad-dalaotelephone/docs/gh-pages/imgs/wx_dev_tool_login.png)
 
 登录后进入注意，点大大的加号，添加项目：
