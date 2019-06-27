@@ -15,7 +15,7 @@
     - 7.1 [UI design](https://org.modao.cc/app/f0ebac717798611817ec540d3532bab4#screen=sB92589E8A31557559884765)（界面设计）
     - 7.2 [Database design](imgs/db_design.png)（数据库设计）
     - 7.3 [Interface API design](api/README.md)（接口 API 设计）
-    - 7.4 Architecture design（架构设计）
+    - 7.4 [Architecture design](SAD/SAD.md)（架构设计）
     - 7.5 Usecase design（用例设计）
 - 8- 、生产规范与指南
     - 8.1 代码规范
@@ -25,6 +25,7 @@
     - 8.2 [REST API 设计规范](后端代码规范.md###接口规范)
     - 8.3 [架构设计、详细设计（BCE方法）到应用程序框架映射指南](BCE.md)
     - 8.4 部署说明
+      - [后端部署说明](https://github.com/swsad-dalaotelephone/Server/blob/master/README.md)
 - 9、成品展示
     - 9.1 XX短视频
     - 9.2 XX短视频
