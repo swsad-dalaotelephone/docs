@@ -19,12 +19,13 @@
     - 7.5 Usecase design（用例设计）
 - 8- 、生产规范与指南
     - 8.1 代码规范
-      - [后端golang代码规范](后端代码规范.md###go语言编写规范)
-      - [后端数据库规范](后端代码规范.md###数据库规范)
+      - [后端golang代码规范](后端代码规范.md#go语言编写规范)
+      - [后端数据库规范](后端代码规范.md#数据库规范)
       - [前端代码规范](前端代码规范.md)
-    - 8.2 [REST API 设计规范](后端代码规范.md###接口规范)
+    - 8.2 [REST API 设计规范](后端代码规范.md#接口规范)
     - 8.3 [架构设计、详细设计（BCE方法）到应用程序框架映射指南](BCE.md)
     - 8.4 部署说明
+      - [前端部署说明](https://github.com/swsad-dalaotelephone/miniProgram/blob/master/README.md)
       - [后端部署说明](https://github.com/swsad-dalaotelephone/Server/blob/master/README.md)
 - 9、成品展示
     - 9.1 XX短视频

@@ -18,7 +18,7 @@
 |学号|昵称|Github|岗位角色|
 |:--:|:--:|:--:|:--:|
 |16340269|Young|[HzYoung](https://github.com/HzYoung)|项目经理、产品经理、go工程师|
-|16340306|Jeff|[zys980808](https://github.com/zys980808)|js工程师、go工程师|
+|16340306|Jeff|[zys980808](https://github.com/zys980808)|js工程师|
 |16340311|Sherry|[Yuandi-Sherry](https://github.com/Yuandi-Sherry)|客户经理、UI/UX设计师、js工程师|
 |16340255|gitgiter|[gitgiter](https://github.com/gitgiter)|技术经理、go工程师|
 |16340260|Dafeng|[Dafenghh](https://github.com/Dafenghh)|js工程师、测试工程师|
