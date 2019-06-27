@@ -9,7 +9,7 @@
     - 6.2 [Use Cases](use-case/README.md##用例)（用例+活动图）
     - 6.3 [Domian Models](domain-model/README.md)（领域模型）
     - 6.4 [State Models](state-models/README.md)（状态模型）
-    - 6.5 System Sequence Diagrams（功能模型）
+    - 6.5 [System Sequence Diagrams](SSD/README.md)（功能模型）
     - 6.6 Supplementary Requirements（补充需求）
 - 7、Design（设计说明书）
     - 7.1 [UI design](https://org.modao.cc/app/f0ebac717798611817ec540d3532bab4#screen=sB92589E8A31557559884765)（界面设计）
