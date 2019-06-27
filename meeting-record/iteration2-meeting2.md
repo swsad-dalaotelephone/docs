@@ -19,4 +19,4 @@
 
 ## 会议记录思维导图
 
-![Week14会议记录](C:\Users\Sherry\OneDrive - 中山大学\大三下\Software System Analysis and Design\Final Project\docs\meeting-record\Week14会议记录.png)
+![Week14会议记录](./Week14会议记录.png)
