@@ -13,11 +13,13 @@
     - 6.6 [Supplementary Requirements](supplementary_requirements.md)（补充需求）
 - 7、Design（设计说明书）
     - 7.1 [UI design](https://org.modao.cc/app/f0ebac717798611817ec540d3532bab4#screen=sB92589E8A31557559884765)（界面设计）
+      - 7.1.1 [Prototype](https://org.modao.cc/app/f0ebac717798611817ec540d3532bab4#screen=sB92589E8A31557559884765)（原型图）
+      - 7.1.2 [UI design specification](./ui-design.md)（UI设计说明书）
     - 7.2 [Database design](imgs/db_design.png)（数据库设计）
     - 7.3 [Interface API design](api/README.md)（接口 API 设计）
     - 7.4 Architecture design（架构设计）
     - 7.5 Usecase design（用例设计）
-- 8- 、生产规范与指南
+- 8 、生产规范与指南
     - 8.1 代码规范
       - [后端golang代码规范](后端代码规范.md###go语言编写规范)
       - [后端数据库规范](后端代码规范.md###数据库规范)
@@ -39,7 +41,7 @@
 - X2 KANBAN
 - X3 auditing-records
 - X4 Tech/Work Report
-    - 学号-title
+    - [16340311- 原型设计软件MockingBot学习笔记]([https://yuandi-sherry.github.io/2019/05/18/%E5%8E%9F%E5%9E%8B%E8%AE%BE%E8%AE%A1%E8%BD%AF%E4%BB%B6MockingBot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/](https://yuandi-sherry.github.io/2019/05/18/原型设计软件MockingBot学习笔记/))
 - X5 Final Report
     - 学号-title
-    - 小组分工与贡献率说明
+    - [小组分工与贡献率说明](./小组分工与贡献率说明.md)
