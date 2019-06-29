@@ -35,7 +35,7 @@
 
 1. 将不同的任务配以不同的图标在任务广场展示
 
-   <img src="./ui-design-imgs/任务广场.png" width="300">
+   <img src="./ui-design-imgs/任务广场.PNG" width="300">
 
 2. 在任务广场上方添加分类栏目，方便用户筛选出不同的任务
 
