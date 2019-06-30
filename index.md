@@ -40,11 +40,14 @@
     - [iteration2-meeting1](./meeting-record/iteration2-meeting1) (2019/05/12)
     - [iteration2-meeting2](./meeting-record/iteration2-meeting2) (2019/06/02)
     - [deployment-meeting](./meeting-record/deployment-meeting) (2019/06/16)
-- X2 KANBAN
+- X2 [KANBAN](kanban.md)
 - X3 Tech/Work Report
     - [16340311- 原型设计软件MockingBot学习笔记](https://yuandi-sherry.github.io/2019/05/18/原型设计软件MockingBot学习笔记/)
     - [16340311 - 微信小程序开发学习笔记](https://yuandi-sherry.github.io/2019/06/27/微信小程序开发学习笔记/)
     - [16340282 - 微信小程序项目实践](<https://blog.csdn.net/happy990/article/details/93785010>)
+    - [16340269-项目经理的成长历险记](https://blog.csdn.net/weixin_43828428/article/details/94310464)
+    - [16340269-关于产品经理的一点心得体会](https://blog.csdn.net/weixin_43828428/article/details/94310582)
+    - [16340269-基于go-gin的微信小程序api框架搭建](https://blog.csdn.net/weixin_43828428/article/details/94294049)
     - [16340255-MySQL安装配置及基本操作](https://gitgiter.github.io/2019/06/18/MySQL安装配置及基本操作)
     - [16340255-Swagger简单使用心得](https://gitgiter.github.io/2019/06/01/Swagger简单使用心得)
     - [16340255-Docker工作原理及常用操作](https://gitgiter.github.io/2019/06/26/Docker工作原理及常用操作)
@@ -52,8 +55,9 @@
     - [16340255-Docker-Compose一键部署](https://gitgiter.github.io/2019/06/30/Docker-Compose一键部署)
     - [16340260-微信小程序项目实战](https://blog.csdn.net/DaF_alex/article/details/94325403)
 - X4 Final Report
-    - [16340311 - Sherry](./personal-reports/16340311-final report.md)
+    - [16340311 - Sherry](./personal-reports/16340311-finalReport.md)
     - [16340282 - CurryYuan](<https://blog.csdn.net/happy990/article/details/94300713>)
     - [16340255-gitgiter](./personal-reports/16340255-gitgiter.md)
     - [16340260-Dafeng](./personal-reports/16340260-dafeng.md)
+    - [16340269-Young](./personal-reports/16340269-report.md)
     - [小组分工与贡献率说明](./小组分工与贡献率说明.md)
