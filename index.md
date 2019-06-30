@@ -30,7 +30,7 @@
       - [前端部署说明](https://github.com/swsad-dalaotelephone/miniProgram/blob/master/README.md)
       - [后端部署说明](https://github.com/swsad-dalaotelephone/Server/blob/master/README.md)
 - 9、成品展示
-    - 9.1 [任务发布者短视频]()
+    - 9.1 [任务发布者短视频](./publisher.mp4)
     - 9.2 [任务接受者短视频](./accepter.mp4)
 - X1 meeting-records
     - [inception meeting](./meeting-record/inception-meeting) (2019/03/23)
