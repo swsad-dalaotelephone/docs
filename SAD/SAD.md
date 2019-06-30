@@ -7,7 +7,7 @@
 
 ---
 
-更详细的说明可以参见：[软件设计文档](https://github.com/swsad-dalaotelephone/SE-308/blob/master/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3.md)
+更详细的说明可以参见：[软件设计文档](https://swsad-dalaotelephone.github.io/SE-308/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3.html)
 
 ---
 
