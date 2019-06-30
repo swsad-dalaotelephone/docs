@@ -1,0 +1,48 @@
+# 项目文档目录
+- 1、[About](about.md)（项目概况）
+- 2、[Team profile](team-profile.md)（团队组建与分工）
+- 3、[Investigation](产品调研文档_v1.0.md)（项目前期调研/竞品分析）
+- 4、[Vision](vision.md)（项目愿景）
+- 5、[Product Backlog](product_backlog.md) （产品特性库）
+- 6、Requirement specification（需求规格说明书）
+    - 6.1 [Usecase Diagram](use-case/README.md##用例图)（用例图）
+    - 6.2 [Use Cases](use-case/README.md##用例)（用例+活动图）
+    - 6.3 [Domian Models](domain-model/README.md)（领域模型）
+    - 6.4 [State Models](state-models/README.md)（状态模型）
+    - 6.5 [System Sequence Diagrams](SSD/README.md)（功能模型）
+    - 6.6 [Supplementary Requirements](supplementary_requirements.md)（补充需求）
+- 7、Design（设计说明书）
+    - 7.1 [UI design](https://org.modao.cc/app/f0ebac717798611817ec540d3532bab4#screen=sB92589E8A31557559884765)（界面设计）
+      - 7.1.1 [Prototype](https://org.modao.cc/app/f0ebac717798611817ec540d3532bab4#screen=sB92589E8A31557559884765)（原型图）
+      - 7.1.2 [UI design specification](./ui-design.md)（UI设计说明书）
+    - 7.2 [Database design](imgs/db_design.png)（数据库设计）
+    - 7.3 [Interface API design](api/README.md)（接口 API 设计）
+    - 7.4 [Architecture design](SAD/SAD.md)（架构设计）
+    - 7.5 Usecase design（用例设计）
+- 8 、生产规范与指南
+    - 8.1 代码规范
+      - [后端golang代码规范](后端代码规范.md###go语言编写规范)
+      - [后端数据库规范](后端代码规范.md###数据库规范)
+      - [前端代码规范](前端代码规范.md)
+    - 8.2 [REST API 设计规范](后端代码规范.md###接口规范)
+    - 8.3 [架构设计、详细设计（BCE方法）到应用程序框架映射指南](BCE.md)
+    - 8.4 部署说明
+      - [前端部署说明](https://github.com/swsad-dalaotelephone/miniProgram/blob/master/README.md)
+      - [后端部署说明](https://github.com/swsad-dalaotelephone/Server/blob/master/README.md)
+- 9、成品展示
+    - 9.1 XX短视频
+    - 9.2 XX短视频
+- X1 meeting-records
+    - [inception meeting](./meeting-record/inception-meeting) (2019/03/23)
+    - [warmup-meeting](./meeting-record/warmup-meeting) (2019/03/31)
+    - [iteration1-meeting1](./meeting-record/iteration1-meeting1) (2019/04/07)
+    - [iteration1-meeting2](./meeting-record/iteration1-meeting2) (2019/04/20)
+    - [iteration2-meeting1](./meeting-record/iteration2-meeting1) (2019/05/12)
+    - [iteration2-meeting2](./meeting-record/iteration2-meeting2) (2019/06/02)
+    - [deployment-meeting](./meeting-record/deployment-meeting) (2019/06/16)
+- X2 KANBAN
+- X3 Tech/Work Report
+    - [16340311- 原型设计软件MockingBot学习笔记]([https://yuandi-sherry.github.io/2019/05/18/%E5%8E%9F%E5%9E%8B%E8%AE%BE%E8%AE%A1%E8%BD%AF%E4%BB%B6MockingBot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/](https://yuandi-sherry.github.io/2019/05/18/原型设计软件MockingBot学习笔记/))
+- X4 Final Report
+    - [16340311-personal report](./personal-reports/16340311-final report.md)
+    - [小组分工与贡献率说明](./小组分工与贡献率说明.md)
