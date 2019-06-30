@@ -5,8 +5,8 @@
 - 4、[Vision](vision.md)（项目愿景）
 - 5、[Product Backlog](product_backlog.md) （产品特性库）
 - 6、Requirement specification（需求规格说明书）
-    - 6.1 [Usecase Diagram](use-case/README.md##用例图)（用例图）
-    - 6.2 [Use Cases](use-case/README.md##用例)（用例+活动图）
+    - 6.1 [Usecase Diagram](use-case/README.md#用例图)（用例图）
+    - 6.2 [Use Cases](use-case/README.md#用例)（用例+活动图）
     - 6.3 [Domian Models](domain-model/README.md)（领域模型）
     - 6.4 [State Models](state-models/README.md)（状态模型）
     - 6.5 [System Sequence Diagrams](SSD/README.md)（功能模型）
@@ -21,11 +21,11 @@
     - 7.5 Usecase design（用例设计）
 - 8 、生产规范与指南
     - 8.1 代码规范
-      - [后端golang代码规范](后端代码规范.md###go语言编写规范)
-      - [后端数据库规范](后端代码规范.md###数据库规范)
+      - [后端golang代码规范](后端代码规范.md#go语言编写规范)
+      - [后端数据库规范](后端代码规范.md#数据库规范)
       - [前端代码规范](前端代码规范.md)
-    - 8.2 [REST API 设计规范](后端代码规范.md###接口规范)
-    - 8.3 [架构设计、详细设计（BCE方法）到应用程序框架映射指南](BCE.md)
+    - 8.2 [REST API 设计规范](后端代码规范.md#接口规范)
+    - 8.3 [详细设计（BCE方法）到应用程序框架映射指南](BCE.md)
     - 8.4 部署说明
       - [前端部署说明](https://github.com/swsad-dalaotelephone/miniProgram/blob/master/README.md)
       - [后端部署说明](https://github.com/swsad-dalaotelephone/Server/blob/master/README.md)
@@ -41,14 +41,13 @@
     - [iteration2-meeting2](./meeting-record/iteration2-meeting2) (2019/06/02)
     - [deployment-meeting](./meeting-record/deployment-meeting) (2019/06/16)
 - X2 KANBAN
-- X3 auditing-records
-- X4 Tech/Work Report
-    - 学号-title
-- X5 Final Report
-    
-    - 小组分工与贡献率说明
 - X3 Tech/Work Report
     - [16340311- 原型设计软件MockingBot学习笔记]([https://yuandi-sherry.github.io/2019/05/18/%E5%8E%9F%E5%9E%8B%E8%AE%BE%E8%AE%A1%E8%BD%AF%E4%BB%B6MockingBot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/](https://yuandi-sherry.github.io/2019/05/18/原型设计软件MockingBot学习笔记/))
+    - [16340255-MySQL安装配置及基本操作](https://gitgiter.github.io/2019/06/28/MySQL%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%8F%8A%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/)
+    - [16340255-Swagger简单使用心得]()
+    - [16340255-Docker工作原理及常用操作]()
+    - [16340255-Dockerfile构建MySQL镜像并初始化]()
+    - [16340255-Docker Compose一键部署]()
 - X4 Final Report
     - [16340311-personal report](./personal-reports/16340311-final report.md)
     - [16340255-gitgiter](./personal-reports/16340255-gitgiter.md)
