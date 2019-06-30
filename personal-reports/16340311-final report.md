@@ -46,7 +46,7 @@ UI设计是在用例文本出来了之后，需要根据用例划分页面，设
 
 最终定下来是通过用户自主添加问题的方式在确保用例对应的内容的自由度的情况下保证了页面的美观性。
 
-<img src="C:/Users/Sherry/OneDrive%20-%20%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6/%E5%A4%A7%E4%B8%89%E4%B8%8B/Software%20System%20Analysis%20and%20Design/Final%20Project/docs/personal-reports/zyd-imgs/%E6%B7%BB%E5%8A%A0%E9%A2%98%E7%9B%AE.PNG" width="300"/>
+<img src="./zyd-imgs/%E6%B7%BB%E5%8A%A0%E9%A2%98%E7%9B%AE.PNG" width="300"/>
 
 ------
 
@@ -60,7 +60,7 @@ UI设计是在用例文本出来了之后，需要根据用例划分页面，设
 
 审核列表采用了显示提交者姓名，以及在右上角用不同颜色banner标记问卷已审核或者未审核。这样一方面使得界面的配色有所丰富，也使得发布者对于问卷是否已经审核一目了然。
 
-<img src="C:/Users/Sherry/OneDrive%20-%20%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6/%E5%A4%A7%E4%B8%89%E4%B8%8B/Software%20System%20Analysis%20and%20Design/Final%20Project/docs/personal-reports/zyd-imgs/%E5%AE%A1%E6%A0%B8%E5%88%97%E8%A1%A8.PNG" width="300"/>
+<img src="./zyd-imgs/%E5%AE%A1%E6%A0%B8%E5%88%97%E8%A1%A8.PNG" width="300"/>
 
 ###### 审核页面
 
@@ -70,7 +70,7 @@ UI设计是在用例文本出来了之后，需要根据用例划分页面，设
 
 参考了各大UI设计网站的配色后，我选择了这个界面颜色较为清新，而且整体布局很清晰且适当留白的界面。
 
-<img src="C:/Users/Sherry/OneDrive%20-%20%E4%B8%AD%E5%B1%B1%E5%A4%A7%E5%AD%A6/%E5%A4%A7%E4%B8%89%E4%B8%8B/Software%20System%20Analysis%20and%20Design/Final%20Project/docs/personal-reports/zyd-imgs/%E4%BB%BB%E5%8A%A1%E5%B9%BF%E5%9C%BA.PNG" width="300"/>
+<img src="./zyd-imgs/%E4%BB%BB%E5%8A%A1%E5%B9%BF%E5%9C%BA.PNG" width="300"/>
 
 由于是个人报告，UI就挑重点说了，如果需要看详细的UI设计，请移步[UI设计说明书](https://swsad-dalaotelephone.github.io/docs/ui-design.html)
 
@@ -96,7 +96,7 @@ UI设计除了整体的外观与逻辑，最重要的一点是用户体验，比
 
 #### 进度控制
 
-这一次由于用例出了一点问题，需要反复讨论，拖延了进度。再设计UI的过程中真实感受到理论到实践的差距，看似合情合理无懈可击的用例，UI设计的时候还是会有很多不清晰、不确定、莫能两可需要再次开会讨论的地方。我觉得在这种老师按照进度引导着开发产品都会出现理论到实现的差距，更不要提我之前的作业都是想到哪里做到哪里，动不动就改需求，重构代码是多么低效和愚蠢了。
+这一次由于用例出了一点问题，需要反复讨论，拖延了进度。再设计UI的过程中真实感受到理论到实践的差距，看似合情合理无懈可击的用例，UI设计的时候还是会有很多不清晰、不确定、模棱两可需要再次开会讨论的地方。我觉得在这种老师按照进度引导着开发产品都会出现理论到实现的差距，更不要提我之前的作业都是想到哪里做到哪里，动不动就改需求，重构代码是多么低效和愚蠢了。
 
 当用例和UI都确定了，前端就可以开工。毕竟多次修改的东西还是尽量控制在前面的阶段，等到代码实现了再修改重构就很耗费精力而且打击团队信心。
 
@@ -126,11 +126,11 @@ UI设计除了整体的外观与逻辑，最重要的一点是用户体验，比
 
 ### Docs
 
-![git-docs](C:\Users\Sherry\OneDrive - 中山大学\大三下\Software System Analysis and Design\Final Project\docs\personal-reports\zyd-imgs\git-docs.PNG)
+![git-docs](.\zyd-imgs\git-docs.PNG)
 
 ### miniProgram
 
-![git-miniProgram](C:\Users\Sherry\OneDrive - 中山大学\大三下\Software System Analysis and Design\Final Project\docs\personal-reports\zyd-imgs\git-miniProgram.PNG)
+![git-miniProgram](.\zyd-imgs\git-miniProgram.PNG)
 
 ## 个人博客清单
 
