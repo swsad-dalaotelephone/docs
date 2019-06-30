@@ -18,7 +18,7 @@
     - 7.2 [Database design](imgs/db_design.png)（数据库设计）
     - 7.3 [Interface API design](api/README.md)（接口 API 设计）
     - 7.4 [Architecture design](SAD/SAD.md)（架构设计）
-    - 7.5 Usecase design（用例设计）
+    - 7.5 [Usecase design](detailDesign/README.md)（用例设计）
 - 8 、生产规范与指南
     - 8.1 代码规范
       - [后端golang代码规范](后端代码规范.md#go语言编写规范)
@@ -30,8 +30,8 @@
       - [前端部署说明](https://github.com/swsad-dalaotelephone/miniProgram/blob/master/README.md)
       - [后端部署说明](https://github.com/swsad-dalaotelephone/Server/blob/master/README.md)
 - 9、成品展示
-    - 9.1 XX短视频
-    - 9.2 XX短视频
+    - 9.1 [任务发布者短视频]()
+    - 9.2 [任务接受者短视频](./accepter.mp4)
 - X1 meeting-records
     - [inception meeting](./meeting-record/inception-meeting) (2019/03/23)
     - [warmup-meeting](./meeting-record/warmup-meeting) (2019/03/31)
