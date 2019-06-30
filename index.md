@@ -50,8 +50,10 @@
     - [16340255-Docker工作原理及常用操作](https://gitgiter.github.io/2019/06/26/Docker工作原理及常用操作)
     - [16340255-Docker构建MySQL镜像并初始化](https://gitgiter.github.io/2019/06/29/Docker构建MySQL镜像并初始化)
     - [16340255-Docker-Compose一键部署](https://gitgiter.github.io/2019/06/30/Docker-Compose一键部署)
+    - [16340260-微信小程序项目实战](https://blog.csdn.net/DaF_alex/article/details/94325403)
 - X4 Final Report
     - [16340311 - Sherry](./personal-reports/16340311-final report.md)
     - [16340282 - CurryYuan](<https://blog.csdn.net/happy990/article/details/94300713>)
     - [16340255-gitgiter](./personal-reports/16340255-gitgiter.md)
+    - [16340260-Dafeng](./personal-reports/16340260-dafeng.md)
     - [小组分工与贡献率说明](./小组分工与贡献率说明.md)
