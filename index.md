@@ -43,6 +43,9 @@
 - X2 KANBAN
 - X3 Tech/Work Report
     - [16340311- 原型设计软件MockingBot学习笔记]([https://yuandi-sherry.github.io/2019/05/18/%E5%8E%9F%E5%9E%8B%E8%AE%BE%E8%AE%A1%E8%BD%AF%E4%BB%B6MockingBot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/](https://yuandi-sherry.github.io/2019/05/18/原型设计软件MockingBot学习笔记/))
+    - [16340282 - 微信小程序项目实践](<https://blog.csdn.net/happy990/article/details/93785010>)
 - X4 Final Report
     - [16340311-personal report](./personal-reports/16340311-final report.md)
+    - [16340282 - CurryYuan](<https://blog.csdn.net/happy990/article/details/94300713>)
     - [小组分工与贡献率说明](./小组分工与贡献率说明.md)
+
