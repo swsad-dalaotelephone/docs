@@ -40,7 +40,7 @@
     - [iteration2-meeting1](./meeting-record/iteration2-meeting1) (2019/05/12)
     - [iteration2-meeting2](./meeting-record/iteration2-meeting2) (2019/06/02)
     - [deployment-meeting](./meeting-record/deployment-meeting) (2019/06/16)
-- X2 KANBAN
+- X2 [KANBAN](kanban.md)
 - X3 Tech/Work Report
     - [16340311- 原型设计软件MockingBot学习笔记]([https://yuandi-sherry.github.io/2019/05/18/%E5%8E%9F%E5%9E%8B%E8%AE%BE%E8%AE%A1%E8%BD%AF%E4%BB%B6MockingBot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/](https://yuandi-sherry.github.io/2019/05/18/原型设计软件MockingBot学习笔记/))
     - [16340311 - 微信小程序开发学习笔记](https://yuandi-sherry.github.io/2019/06/27/微信小程序开发学习笔记/)
@@ -50,8 +50,12 @@
     - [16340255-Docker工作原理及常用操作]()
     - [16340255-Dockerfile构建MySQL镜像并初始化]()
     - [16340255-Docker Compose一键部署]()
+    - [16340269-项目经理的成长历险记](https://blog.csdn.net/weixin_43828428/article/details/94310464)
+    - [16340269-关于产品经理的一点心得体会](https://blog.csdn.net/weixin_43828428/article/details/94310582)
+    - [16340269-基于go-gin的微信小程序api框架搭建](https://blog.csdn.net/weixin_43828428/article/details/94294049)
 - X4 Final Report
     - [16340311 - Sherry](./personal-reports/16340311-final report.md)
     - [16340282 - CurryYuan](<https://blog.csdn.net/happy990/article/details/94300713>)
     - [16340255-gitgiter](./personal-reports/16340255-gitgiter.md)
+    - [16340269-Young](./personal-reports/16340269-report.md)
     - [小组分工与贡献率说明](./小组分工与贡献率说明.md)
