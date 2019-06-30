@@ -136,7 +136,7 @@ UI设计除了整体的外观与逻辑，最重要的一点是用户体验，比
 
 - [原型设计软件MockingBot学习笔记](https://yuandi-sherry.github.io/2019/05/18/原型设计软件MockingBot学习笔记/)
 
-- [微信小程序开发学习笔记]([https://yuandi-sherry.github.io/2019/06/27/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/](https://yuandi-sherry.github.io/2019/06/27/微信小程序开发学习笔记/))
+- [微信小程序开发学习笔记](https://yuandi-sherry.github.io/2019/06/27/微信小程序开发学习笔记/)
 
 ## 特别致谢
 

@@ -43,6 +43,7 @@
 - X2 KANBAN
 - X3 Tech/Work Report
     - [16340311- 原型设计软件MockingBot学习笔记]([https://yuandi-sherry.github.io/2019/05/18/%E5%8E%9F%E5%9E%8B%E8%AE%BE%E8%AE%A1%E8%BD%AF%E4%BB%B6MockingBot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/](https://yuandi-sherry.github.io/2019/05/18/原型设计软件MockingBot学习笔记/))
+    - [微信小程序开发学习笔记](https://yuandi-sherry.github.io/2019/06/27/微信小程序开发学习笔记/)
     - [16340282 - 微信小程序项目实践](<https://blog.csdn.net/happy990/article/details/93785010>)
     - [16340255-MySQL安装配置及基本操作](https://gitgiter.github.io/2019/06/28/MySQL%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%8F%8A%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/)
     - [16340255-Swagger简单使用心得]()
@@ -50,7 +51,7 @@
     - [16340255-Dockerfile构建MySQL镜像并初始化]()
     - [16340255-Docker Compose一键部署]()
 - X4 Final Report
-    - [16340311-personal report](./personal-reports/16340311-final report.md)
+    - [16340311 - Sherry](./personal-reports/16340311-final report.md)
     - [16340282 - CurryYuan](<https://blog.csdn.net/happy990/article/details/94300713>)
     - [16340255-gitgiter](./personal-reports/16340255-gitgiter.md)
     - [小组分工与贡献率说明](./小组分工与贡献率说明.md)
